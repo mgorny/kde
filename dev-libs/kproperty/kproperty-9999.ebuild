@@ -4,6 +4,7 @@
 
 EAPI=6
 
+KDE_TEST="true"
 inherit kde5
 
 DESCRIPTION="Property editing framework with editor widget similar to Qt Designer"
@@ -22,3 +23,8 @@ DEPEND="
 	$(add_qt_dep qtwidgets)
 "
 RDEPEND="${DEPEND}"
+
+src_test() {
+	export KPropertyCore_DIR="${S}/src"
+	kde5_src_test
+}
