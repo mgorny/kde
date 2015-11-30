@@ -6,6 +6,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
+KDE_TEST="true"
 inherit kde5 python-any-r1
 
 DESCRIPTION="Database connectivity and creation framework for various vendors"
