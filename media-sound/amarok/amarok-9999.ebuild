@@ -15,6 +15,7 @@ DESCRIPTION="Advanced audio player based on KDE frameworks"
 HOMEPAGE="https://amarok.kde.org/"
 
 LICENSE="GPL-2"
+KEYWORDS=""
 IUSE="+embedded ffmpeg ipod lastfm mtp ofa opengl +utils"
 
 if [[ ${KDE_BUILD_TYPE} == live ]]; then
@@ -126,8 +127,9 @@ pkg_postinst() {
 		elog "You've disabled the amarok support for embedded mysql DBs."
 		elog "You'll have to configure amarok to use an external db server."
 		echo
-		elog "Please read http://amarok.kde.org/wiki/MySQL_Server for details on how"
-		elog "to configure the external db and migrate your data from the embedded database."
+		elog "For details on how to configure the external db and migrate your data"
+		elog "from the embedded database, please read"
+		elog "https://userbase.kde.org/Amarok/Manual/Organization/Collection/ExternalDatabase"
 		echo
 
 		if has_version "virtual/mysql[minimal]"; then
