@@ -4,10 +4,10 @@
 
 EAPI=6
 
-KDE_HANDBOOK="true"
+KDE_HANDBOOK="optional"
 inherit kde5
 
-DESCRIPTION="Application to create libraries of QPainterPath objects with redering hints"
+DESCRIPTION="Application to create libraries of QPainterPath objects with rendering hints"
 HOMEPAGE="https://userbase.kde.org/SymbolEditor"
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	MY_P=SymbolEditor-${PV}
@@ -37,12 +37,3 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	!media-gfx/symboleditor:4
 "
-
-src_configure() {
-	local mycmakeargs=(
-		$(cmake-utils_use_find_package doc Doxygen)
-		$(cmake-utils_use_find_package handbook KF5DocTools)
-	)
-
-	kde5_src_configure
-}
