@@ -106,12 +106,27 @@ if [[ ${KDEBASE} = kdel10n ]]; then
 	fi
 fi
 
+# @ECLASS-VARIABLE: KDE_KEEP_SUBDIR
+# @DESCRIPTION:
+# If building a split package using KDE_SUBPROJ, provide a list of
+# additional subdirectories that need to be present for a successful build.
+: ${KDE_KEEP_SUBDIR:=}
+
 # @ECLASS-VARIABLE: KDE_SELINUX_MODULE
 # @DESCRIPTION:
 # If set to "none", do nothing.
 # For any other value, add selinux to IUSE, and depending on that useflag
 # add a dependency on sec-policy/selinux-${KDE_SELINUX_MODULE} to (R)DEPEND.
 : ${KDE_SELINUX_MODULE:=none}
+
+# @ECLASS-VARIABLE: KDE_SUBPROJ
+# @DESCRIPTION:
+# If set to "false", do nothing.
+# For any other value, keep ${S} at default value but disable subdirectories
+# other than ${KDE_SUBPROJ} and do black magic to make hardcoded-but-optional
+# dependencies optional. For use with split packaging where root CMakeLists.txt
+# is required to succeed.
+: ${KDE_SUBPROJ:=false}
 
 # @ECLASS-VARIABLE: KDE_UNRELEASED
 # @INTERNAL
@@ -594,6 +609,31 @@ EOF
 		elif [[ ${CATEGORY} = kde-frameworks || ${CATEGORY} = kde-plasma || ${CATEGORY} = kde-apps ]] ; then
 			cmake_comment_add_subdirectory autotests test tests
 		fi
+	fi
+
+	if [[ -n ${KDE_SUBPROJ} && ${KDE_SUBPROJ} != false ]]; then
+		# black magic to make dependencies from root CMakeLists.txt optional
+		sed -e "/find_package(KF5/ s/ REQUIRED//" \
+			-e "/find_package(Qt5 / s/ REQUIRED/ OPTIONAL_COMPONENTS/" \
+			-i CMakeLists.txt || die "Failed to make dependencies optional"
+
+		# remove anything else not listed here
+		local _keep_subdir="${KDE_SUBPROJ} ${KDE_KEEP_SUBDIR}"
+		einfo "Building: ${_keep_subdir}"
+		_keep_subdir="cmake doc examples ${_keep_subdir}"
+
+		einfo "Removing other subdirectories:"
+		pushd "${S}" > /dev/null || die
+		for subdir in *; do
+			if ! has ${subdir} ${_keep_subdir} ; then
+				if [[ -d "${subdir}" ]] ; then
+					einfo "   ${subdir}"
+					rm -r ${subdir} || die "Failed to remove ${subdir} subdir"
+					cmake_comment_add_subdirectory ${subdir}
+				fi
+			fi
+		done
+		popd > /dev/null || die
 	fi
 }
 
