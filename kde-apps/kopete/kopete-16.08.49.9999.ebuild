@@ -100,6 +100,7 @@ COMMONDEPEND="
 	yahoo? ( media-libs/jasper )
 "
 RDEPEND="${COMMONDEPEND}
+	$(add_kdeapps_dep knewstuff '' 16.04.3)
 	latex? (
 		|| (
 			media-gfx/imagemagick

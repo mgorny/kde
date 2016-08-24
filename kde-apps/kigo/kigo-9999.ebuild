@@ -14,5 +14,6 @@ IUSE="debug"
 
 DEPEND="$(add_kdeapps_dep libkdegames)"
 RDEPEND="${DEPEND}
+	$(add_kdeapps_dep knewstuff '' 16.04.3)
 	games-board/gnugo
 "

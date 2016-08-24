@@ -20,4 +20,6 @@ DEPEND="
 	app-crypt/qca:2[qt4]
 	sys-libs/zlib
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	$(add_kdeapps_dep knewstuff '' 16.04.3)
+"
