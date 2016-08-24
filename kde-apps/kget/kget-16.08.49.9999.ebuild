@@ -12,7 +12,7 @@ HOMEPAGE="https://www.kde.org/applications/internet/kget/"
 KEYWORDS=""
 IUSE="debug bittorrent gpg mms sqlite webkit"
 
-RDEPEND="
+COMMON_DEPEND="
 	$(add_kdeapps_dep libkonq)
 	$(add_kdebase_dep libkworkspace '' 4.11)
 	app-crypt/qca:2[qt4]
@@ -22,8 +22,11 @@ RDEPEND="
 	sqlite? ( dev-db/sqlite:3 )
 	webkit? ( >=kde-misc/kwebkitpart-0.9.6:4 )
 "
-DEPEND="${RDEPEND}
+DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
+"
+RDEPEND="${COMMON_DEPEND}
+	$(add_kdeapps_dep kcmshell '' 16.04.3)
 "
 
 src_configure() {

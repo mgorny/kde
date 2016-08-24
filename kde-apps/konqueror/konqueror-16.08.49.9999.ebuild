@@ -28,6 +28,7 @@ DEPEND="
 
 # bug #544630: evince[nsplugin] crashes konqueror
 RDEPEND="${DEPEND}
+	$(add_kdeapps_dep kcmshell '' 16.04.3)
 	$(add_kdeapps_dep kfind)
 	$(add_kdeapps_dep kfmclient)
 	$(add_kdeapps_dep knewstuff '' 16.04.3)
