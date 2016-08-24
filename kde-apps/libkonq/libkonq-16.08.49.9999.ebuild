@@ -16,4 +16,7 @@ RESTRICT="test"
 
 KMSAVELIBS="true"
 
+DEPEND="media-libs/phonon[qt4]"
+RDEPEND="$(add_kdeapps_dep phonon-kde)"
+
 PATCHES=( "${FILESDIR}/${PN}-4.9.0-cmake.patch" )

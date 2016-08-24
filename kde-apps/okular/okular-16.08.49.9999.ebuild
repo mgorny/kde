@@ -18,6 +18,7 @@ IUSE="chm crypt debug djvu dpi ebook +jpeg kde mobi +postscript +pdf +tiff"
 
 DEPEND="
 	media-libs/freetype
+	media-libs/phonon[qt4]
 	media-libs/qimageblitz
 	sys-libs/zlib
 	chm? ( dev-libs/chmlib )
@@ -35,7 +36,9 @@ DEPEND="
 	postscript? ( app-text/libspectre )
 	tiff? ( media-libs/tiff:0 )
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	$(add_kdeapps_dep phonon-kde)
+"
 
 src_configure() {
 	local mycmakeargs=(

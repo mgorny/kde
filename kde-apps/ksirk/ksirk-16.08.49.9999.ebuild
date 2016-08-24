@@ -18,8 +18,10 @@ IUSE="debug"
 DEPEND="
 	$(add_kdeapps_dep libkdegames)
 	app-crypt/qca:2[qt4]
+	media-libs/phonon[qt4]
 	sys-libs/zlib
 "
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep knewstuff '' 16.04.3)
+	$(add_kdeapps_dep phonon-kde)
 "

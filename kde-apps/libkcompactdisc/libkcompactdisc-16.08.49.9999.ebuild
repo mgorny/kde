@@ -14,7 +14,9 @@ DEPEND="
 	media-libs/phonon[qt4]
 	alsa? ( media-libs/alsa-lib )
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	$(add_kdeapps_dep phonon-kde)
+"
 
 src_configure() {
 	local mycmakeargs=(

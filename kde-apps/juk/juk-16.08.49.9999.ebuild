@@ -13,9 +13,12 @@ KEYWORDS=""
 IUSE="debug"
 
 DEPEND="
+	media-libs/phonon[qt4]
 	>=media-libs/taglib-1.6
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	$(add_kdeapps_dep phonon-kde)
+"
 
 src_configure() {
 	# bug 410551: for disabling deprecated TunePimp support

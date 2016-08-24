@@ -17,4 +17,6 @@ DEPEND="
 	media-libs/musicbrainz:3
 	media-libs/phonon[qt4]
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	$(add_kdeapps_dep phonon-kde)
+"
