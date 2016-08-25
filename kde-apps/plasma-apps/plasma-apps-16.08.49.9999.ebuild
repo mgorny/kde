@@ -15,4 +15,6 @@ IUSE="debug"
 DEPEND="
 	$(add_kdeapps_dep libkonq)
 "
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	$(add_kdeapps_dep solid-runtime)
+"

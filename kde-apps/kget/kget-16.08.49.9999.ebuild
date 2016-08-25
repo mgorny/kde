@@ -27,6 +27,7 @@ DEPEND="${COMMON_DEPEND}
 "
 RDEPEND="${COMMON_DEPEND}
 	$(add_kdeapps_dep kcmshell '' 16.04.3)
+	$(add_kdeapps_dep solid-runtime)
 "
 
 src_configure() {

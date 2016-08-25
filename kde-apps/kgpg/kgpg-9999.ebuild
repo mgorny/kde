@@ -18,6 +18,7 @@ DEPEND="
 	$(add_kdeapps_dep kdepimlibs)
 "
 RDEPEND="${DEPEND}
+	$(add_kdeapps_dep solid-runtime)
 	app-crypt/gnupg
 "
 

@@ -103,6 +103,7 @@ RDEPEND="${COMMONDEPEND}
 	$(add_kdeapps_dep kcmshell '' 16.04.3)
 	$(add_kdeapps_dep knewstuff '' 16.04.3)
 	$(add_kdeapps_dep phonon-kde)
+	$(add_kdeapps_dep solid-runtime)
 	latex? (
 		|| (
 			media-gfx/imagemagick

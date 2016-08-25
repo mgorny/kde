@@ -16,6 +16,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}
 	$(add_kdeapps_dep phonon-kde)
+	$(add_kdeapps_dep solid-runtime)
 "
 
 src_configure() {

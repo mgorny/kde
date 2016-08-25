@@ -33,6 +33,7 @@ RDEPEND="${DEPEND}
 	$(add_kdeapps_dep kfmclient)
 	$(add_kdeapps_dep knewstuff '' 16.04.3)
 	$(add_kdeapps_dep kurifilter-plugins)
+	$(add_kdeapps_dep solid-runtime)
 	bookmarks? ( $(add_kdeapps_dep keditbookmarks) )
 	filemanager? (
 		$(add_kdeapps_dep kdebase-kioslaves)
