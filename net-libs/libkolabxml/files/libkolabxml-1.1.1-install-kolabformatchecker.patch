@@ -1,0 +1,8 @@
+--- a/utils/CMakeLists.txt	2015-10-17 20:13:05.761607078 +0200
++++ b/utils/CMakeLists.txt	2015-10-17 22:52:10.899276436 +0200
+@@ -3,3 +3,5 @@
+ 
+ add_executable(kolabformatchecker kolabformatchecker.cpp)
+ target_link_libraries(kolabformatchecker kolabxml ${Boost_LIBRARIES})
++
++install(TARGETS kolabformatchecker RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

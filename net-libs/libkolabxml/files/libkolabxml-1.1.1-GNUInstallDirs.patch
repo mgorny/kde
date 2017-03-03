@@ -1,0 +1,41 @@
+Authored		dfaure
+Committed		dfaure	Sep 4 2015, 10:07 PM
+Pushed			dfaure	Sep 4 2015, 10:11 PM
+
+Use GNUInstallDirs so that setting LIB_SUFFIX manually isn't necessary anymore.
+
+This bumps the required cmake version to 2.8.5.
+
+Reviewed-by: Christian Mollekopf
+
+--- a/CMakeLists.txt	2015-10-17 15:07:19.215970462 +0200
++++ b/CMakeLists.txt	2015-10-17 15:12:20.601202628 +0200
+@@ -1,11 +1,6 @@
+-# The special language NONE is not available in cmake 2.6
+-if(${CMAKE_MAJOR_VERSION} EQUAL 2 AND ${CMAKE_MINOR_VERSION} GREATER 6)
+-    project(Libkolabxml NONE)
+-else()
+-    project(Libkolabxml C)
+-endif()
++cmake_minimum_required(VERSION 2.8.5)
+ 
+-cmake_minimum_required(VERSION 2.6)
++project(Libkolabxml NONE)
+ 
+ option( BUILD_TESTS "Build the tests" TRUE )
+ option( BUILD_UTILS "Build optional utils" FALSE )
+@@ -77,8 +72,12 @@
+ #C++ is required from here on
+ enable_language(CXX)
+ 
+-set(LIB_INSTALL_DIR lib${LIB_SUFFIX} CACHE STRING "The directories where to install libraries to")
+-set(INCLUDE_INSTALL_DIR include CACHE STRING "The directory where to install headers to")
++
++# Used to set installation paths
++include(GNUInstallDirs)
++
++set(LIB_INSTALL_DIR ${CMAKE_INSTALL_LIBDIR} CACHE STRING "The directories where to install libraries to")
++set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR} CACHE STRING "The directory where to install headers to")
+ set(INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_DIR}/kolabxml)
+ set(CMAKECONFIG_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/Libkolabxml )
+ 
