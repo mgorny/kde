@@ -76,7 +76,7 @@ COMMONDEPEND="
 	)
 	cryptography? (
 		|| (
-			$(add_kdeapps_dep kdepim-common-libs)
+			$(add_kdeapps_dep kdepim-common-libs '' 4.14.11_pre20160211-r2)
 			$(add_kdeapps_dep libkleo '' 4.4.2016.01-r1)
 		)
 	)
@@ -118,6 +118,8 @@ DEPEND="${COMMONDEPEND}
 	jingle? ( dev-libs/jsoncpp )
 	!aqua? ( x11-proto/scrnsaverproto )
 "
+
+PATCHES=( "${FILESDIR}/${PN}-16.12.3-kde4qgpgme.patch" )
 
 src_configure() {
 	local x x2
