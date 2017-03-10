@@ -51,7 +51,8 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	mysql? ( virtual/mysql )
 	postgres? ( dev-db/postgresql )
-	!kde-apps/kdepimlibs
+	!<kde-apps/kdepimlibs-4.14.10_p20160516:4
+	!=kde-apps/kdepimlibs-4.14.11_pre20160211*:4
 "
 
 # some akonadi tests time out, that probably needs more work as it's ~700 tests
