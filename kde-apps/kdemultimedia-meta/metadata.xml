@@ -7,5 +7,6 @@
 	</maintainer>
 	<use>
 		<flag name="cdrom">Include packages for optical discs</flag>
+		<flag name="qt4">Pull in kdelibs-4 based applications</flag>
 	</use>
 </pkgmetadata>

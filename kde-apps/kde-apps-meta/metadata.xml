@@ -7,6 +7,7 @@
 	</maintainer>
 	<use>
 		<flag name="pim">Pull in KDE PIM suite</flag>
+		<flag name="qt4">Pull in kdelibs-4 based applications</flag>
 		<flag name="sdk">Pull in developer-specific meta-packages</flag>
 	</use>
 </pkgmetadata>
