@@ -4,9 +4,9 @@
 # @ECLASS: kde5.eclass
 # @MAINTAINER:
 # kde@gentoo.org
-# @BLURB: Support eclass for KDE 5-related packages.
+# @BLURB: Support eclass for packages by the KDE community.
 # @DESCRIPTION:
-# The kde5.eclass provides support for building KDE 5-related packages.
+# The kde5.eclass provides support for building packages by KDE.
 
 if [[ -z ${_KDE5_ECLASS} ]]; then
 _KDE5_ECLASS=1
@@ -456,7 +456,7 @@ kde5_pkg_nofetch() {
 
 # @FUNCTION: kde5_src_unpack
 # @DESCRIPTION:
-# Function for unpacking KDE 5.
+# Function for unpacking sources. Only partial unpacking for l10n packages.
 kde5_src_unpack() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -483,7 +483,8 @@ kde5_src_unpack() {
 
 # @FUNCTION: kde5_src_prepare
 # @DESCRIPTION:
-# Function for preparing the KDE 5 sources.
+# Function for preparing sources. Filtering of bundled po files,
+# conditional removal of doc, examples and test subdirectories.
 kde5_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -616,7 +617,7 @@ kde5_src_prepare() {
 
 # @FUNCTION: kde5_src_configure
 # @DESCRIPTION:
-# Function for configuring the build of KDE 5.
+# Function for configuring the build.
 kde5_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -654,7 +655,7 @@ kde5_src_configure() {
 
 # @FUNCTION: kde5_src_compile
 # @DESCRIPTION:
-# Function for compiling KDE 5.
+# Function for compiling KF5-based source.
 kde5_src_compile() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -663,7 +664,7 @@ kde5_src_compile() {
 
 # @FUNCTION: kde5_src_test
 # @DESCRIPTION:
-# Function for testing KDE 5.
+# Function for testing.
 kde5_src_test() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -694,7 +695,7 @@ kde5_src_test() {
 
 # @FUNCTION: kde5_src_install
 # @DESCRIPTION:
-# Function for installing KDE 5.
+# Function for installing KF5-based packages, excludes handbook files from compression.
 kde5_src_install() {
 	debug-print-function ${FUNCNAME} "$@"
 
@@ -702,7 +703,7 @@ kde5_src_install() {
 
 	# We don't want ${PREFIX}/share/doc/HTML to be compressed,
 	# because then khelpcenter can't find the docs
-	if [[ -d ${ED}/${PREFIX}/share/doc/HTML ]]; then
+	if [[ -d ${ED}${PREFIX}/share/doc/HTML ]]; then
 		docompress -x ${PREFIX}/share/doc/HTML
 	fi
 }
@@ -735,7 +736,7 @@ kde5_pkg_postinst() {
 			einfo "Use it at your own risk."
 			einfo "Do _NOT_ file bugs at bugs.gentoo.org because of this ebuild!"
 		fi
-		# for kf5-based applications tell user that he SHOULD NOT be using kde-plasma/plasma-workspace:4
+		# for KF5-based applications tell user that he SHOULD NOT be using kde-plasma/plasma-workspace:4
 		if [[ ${KDEBASE} != kde-base || ${CATEGORY} = kde-apps ]]  && \
 				has_version 'kde-plasma/plasma-workspace:4'; then
 			echo
