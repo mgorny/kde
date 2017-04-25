@@ -4,10 +4,10 @@
 # @ECLASS: kde5-functions.eclass
 # @MAINTAINER:
 # kde@gentoo.org
-# @BLURB: Common ebuild functions for KDE 5 packages
+# @BLURB: Common ebuild functions for KF5-based packages
 # @DESCRIPTION:
 # This eclass contains all functions shared by the different eclasses,
-# for KDE 5 ebuilds.
+# for ebuilds targeting KF5-based applications.
 
 if [[ -z ${_KDE5_FUNCTIONS_ECLASS} ]]; then
 _KDE5_FUNCTIONS_ECLASS=1
