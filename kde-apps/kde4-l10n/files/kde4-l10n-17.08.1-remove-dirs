@@ -12,15 +12,5 @@ docs/kde-runtime kdesu
 docs/kde-runtime khelpcenter
 docs/kde-runtime knetattach
 docs/kde-runtime onlinehelp
-docs/kde-runtime/kcontrol bookmarks
-docs/kde-runtime/kcontrol cookies
-docs/kde-runtime/kcontrol ebrowsing
-docs/kde-runtime/kcontrol emoticons
-docs/kde-runtime/kcontrol icons
-docs/kde-runtime/kcontrol kcmcgi
-docs/kde-runtime/kcontrol kcm_ssl
-docs/kde-runtime/kcontrol nepomuk
-docs/kde-runtime/kcontrol smb
-docs/kde-runtime/kcontrol trash
-docs/kde-runtime/kcontrol useragent
+docs/kde-runtime kcontrol
 scripts kdebase
