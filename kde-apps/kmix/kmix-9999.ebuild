@@ -41,6 +41,7 @@ DEPEND="${COMMON_DEPEND}
 "
 RDEPEND="${COMMON_DEPEND}
 	$(add_plasma_dep kde-cli-tools)
+	!kde-apps/kde4-l10n
 "
 
 src_configure() {
