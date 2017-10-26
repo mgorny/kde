@@ -13,7 +13,7 @@ HOMEPAGE="https://kde.org/applications/office/kontact/"
 
 LICENSE="GPL-2+ LGPL-2.1+"
 KEYWORDS="~amd64 ~arm64 ~x86"
-IUSE="importwizard markdown"
+IUSE=""
 
 COMMON_DEPEND="
 	$(add_frameworks_dep kcompletion)
@@ -56,8 +56,6 @@ COMMON_DEPEND="
 	$(add_qt_dep qtnetwork)
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtxml)
-	importwizard? ( $(add_kdeapps_dep akonadi-import-wizard) )
-	markdown? ( app-text/discount )
 "
 DEPEND="${COMMON_DEPEND}
 	>=app-crypt/gpgme-1.7.1[cxx,qt5]
@@ -70,20 +68,59 @@ RDEPEND="${COMMON_DEPEND}
 
 RESTRICT+=" test"
 
+# This package will only install 'common' plugins inside the plugins subdir.
+# Top-level plugins are merged in their respective rdeps via USE=addons.
+src_prepare() {
+	kde5_src_prepare
+	local po_filter keep_subdir=( examples plugins po )
+
+	sed -e "/find_package(KF5/ s/ REQUIRED//" \
+		-e "/find_package(Qt5 / s/ REQUIRED/ OPTIONAL_COMPONENTS/" \
+		-i CMakeLists.txt || die "Failed to make dependencies optional"
+
+	comment_external_subdir() {
+		[[ -z ${1} ]] && die "${FUNCNAME}: Usage: <subdir> [\${CATEGORY}/\${PN}]"
+		[[ ! -e ${1} ]] && die "${FUNCNAME}: subdir '${1}' does not exist!"
+		cmake_comment_add_subdirectory ${1}
+		keep_subdir+=( ${1} )
+		po_filter+=" $(get_po_list ${1})"
+		[[ -z ${2} ]] \
+			&& einfo "${1} -> ${CATEGORY}/${1}[addons]" \
+			|| einfo "${1} -> ${2}[addons]"
+	}
+
+	einfo "The following directories are built by other packages instead:"
+	comment_external_subdir akonadi-import-wizard
+	comment_external_subdir kaddressbook
+	comment_external_subdir kmail
+	comment_external_subdir kmailtransport
+	comment_external_subdir korganizer
+	comment_external_subdir sieveeditor kde-apps/pim-sieve-editor
+
+	pushd "${S}" > /dev/null || die
+	local subdir
+	for subdir in *; do
+		if ! has ${subdir} ${keep_subdir[@]} ; then
+			if [[ -d "${subdir}" ]] ; then
+				ewarn "Unhandled subdir: ${subdir}"
+				# ^ add to keep_subdir or corresponding package
+			fi
+		fi
+	done
+	popd > /dev/null || die
+
+	if [[ -d po ]]; then
+		local po
+		for po in ${po_filter}; do
+			rm -f po/*/${po}.po || die "Failed to remove ${po}.po";
+		done
+	fi
+}
+
 src_configure() {
 	local mycmakeargs=(
 		-DKDEPIMADDONS_BUILD_EXAMPLES=$(usex examples)
-		$(cmake-utils_use_find_package importwizard KPimImportWizard)
-		$(cmake-utils_use_find_package markdown Discount)
 	)
 
 	kde5_src_configure
-}
-
-pkg_postinst() {
-	kde5_pkg_postinst
-
-	if [[ ${KDE_BUILD_TYPE} = live ]] && ! has_version "kde-misc/kregexpeditor" ; then
-		elog "${PN} Sieve editor plugin can make use of kde-misc/kregexpeditor if installed."
-	fi
 }
