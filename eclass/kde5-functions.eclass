@@ -283,6 +283,20 @@ get_kde_version() {
 	fi
 }
 
+# @FUNCTION: get_po_list [subdir]
+# @DESCRIPTION:
+# Scans CMakeLists.txt files below [subdir] for TRANSLATION_DOMAIN defs,
+# extracts the corresponding po names and returns them as a list.
+get_po_list() {
+	local po_filter _subdir=${1}
+	[[ -z ${_subdir} ]] && $_subdir="${S}"
+	for x in $(find ${_subdir} -name "CMakeLists.txt" -exec grep -h "TRANSLATION_DOMAIN" {} \;); do
+		td=$(echo $x | sed '/TRANSLATION_DOMAIN/s:.*=\\"\([^]]*\)\\"\s*).*:\1:g');
+		[[ ! -z ${td} ]] && po_filter+=( ${td} )
+	done
+	echo "${po_filter[@]}"
+}
+
 # @FUNCTION: kde_l10n2lingua
 # @USAGE: <l10n>...
 # @INTERNAL
