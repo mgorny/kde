@@ -1,0 +1,32 @@
+From aa552370531169fcefa646ca4f1d339144be7609 Mon Sep 17 00:00:00 2001
+From: Andreas Sturmlechner <asturm@gentoo.org>
+Date: Wed, 10 Jul 2019 14:52:38 +0200
+Subject: [PATCH] Find Discount package in root CMakeLists.txt
+
+---
+ CMakeLists.txt | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 0df36c83a..6d9fe6709 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -153,6 +153,15 @@ add_subdirectory(ktnef)
+ add_subdirectory(kmail-refresh-settings)
+ install(FILES kmail.renamecategories kmail.categories  DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+ 
++set(QTCREATOR_TEMPLATE_INSTALL_DIR ${KDE_INSTALL_DATADIR}/qtcreator/templates CACHE PATH "Define qtcreator template install path (default is /usr/share/qtcreator/templates)")
++
++find_package(Discount "2")
++set_package_properties("discount" PROPERTIES
++        DESCRIPTION "A library that gives you formatting functions suitable for marking down entire documents or lines of text"
++        URL "https://www.pell.portland.or.us/~orc/Code/discount/"
++        TYPE RECOMMENDED
++        PURPOSE "Generate Markdown file.")
++
+ add_subdirectory(doc)
+ feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)
+ 
+-- 
+2.22.0
+

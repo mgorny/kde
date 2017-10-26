@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="forceoptional"
+KDE_PIMADDONS_DIR="${PN}"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
 inherit kde5
@@ -69,6 +70,7 @@ COMMON_DEPEND="
 	$(add_qt_dep qtwebengine 'widgets')
 	$(add_qt_dep qtwidgets)
 	>=app-crypt/gpgme-1.11.1[cxx,qt5]
+	addons? ( app-text/discount )
 "
 DEPEND="${COMMON_DEPEND}
 	$(add_kdeapps_dep kcalutils)
@@ -76,6 +78,7 @@ DEPEND="${COMMON_DEPEND}
 	test? ( $(add_kdeapps_dep akonadi 'sqlite') )
 "
 RDEPEND="${COMMON_DEPEND}
+	!<kde-apps/kdepim-addons-19.04.3
 	!kde-apps/kdepim-common-libs:4
 	!kde-apps/kdepim-l10n
 	!kde-apps/ktnef
@@ -83,14 +86,28 @@ RDEPEND="${COMMON_DEPEND}
 	$(add_kdeapps_dep kmail-account-wizard)
 "
 
+PATCHES=( "${FILESDIR}/${PN}-19.04.3-pimaddons.patch" )
+
 RESTRICT+=" test" # bug 616878
 
 src_prepare() {
 	kde5_src_prepare
 
+	if use addons; then
+		mv ../kdepim-addons-${PV}/cmake/modules/FindDiscount.cmake . || die
+	fi
+
 	if ! use handbook; then
 		sed -i ktnef/CMakeLists.txt -e "/add_subdirectory(doc)/ s/^/#DONT/" || die
 	fi
+}
+
+src_configure() {
+	local mycmakeargs=(
+		$(cmake-utils_use_find_package addons Discount)
+	)
+
+	kde5_src_configure
 }
 
 pkg_postinst() {
