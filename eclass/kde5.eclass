@@ -325,90 +325,84 @@ _calculate_src_base() {
 	echo ${_src_base}
 }
 
+# @FUNCTION: _calculate_src_uri
+# @USAGE: <CATEGORY> <PN> [PV]
+# @INTERNAL
+# @DESCRIPTION:
 # Determine fetch location for released tarballs
 _calculate_src_uri() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local _kmname
+	local _category=${1}
+	local _pn=${2}
+	local _pv=${3}
+	local _src_uri
 
-	if [[ -n ${KMNAME} ]]; then
-		_kmname=${KMNAME}
-	else
-		_kmname=${PN}
-	fi
+	[[ -z ${_pv} ]] && _pv=${PV}
 
-	case ${PN} in
+	case ${_pn} in
 		kdelibs4support | \
 		khtml | \
 		kjs | \
 		kjsembed | \
 		kmediaplayer | \
 		kross)
-			_kmname="portingAids/${_kmname}"
+			_pn="portingAids/${_pn}"
 			;;
 		kdewebkit)
 			[[ ${PV} = 5.5?.* ]] || _kmname="portingAids/${_kmname}"
 			;;
 	esac
 
-	case ${CATEGORY} in
+	case ${_category} in
 		kde-apps)
-			case ${PV} in
-				??.?.[6-9]? | ??.??.[6-9]? )
-					SRC_URI="mirror://kde/unstable/applications/${PV}/src/${_kmname}-${PV}.tar.xz"
-					RESTRICT+=" mirror"
-					;;
-				*)
-					SRC_URI="mirror://kde/stable/applications/${PV}/src/${_kmname}-${PV}.tar.xz" ;;
-			esac
-			;;
+			_src_uri="mirror://kde/$(_calculate_src_base)/applications/${_pv}/src/${_pn}-${_pv}.tar.xz" ;;
 		kde-frameworks)
-			SRC_URI="mirror://kde/stable/frameworks/${PV%.*}/${_kmname}-${PV}.tar.xz" ;;
+			_src_uri="mirror://kde/$(_calculate_src_base)/frameworks/${_pv%.*}/${_pn}-${_pv}.tar.xz" ;;
 		kde-plasma)
 			local plasmapv=$(ver_cut 1-3)
-
-			case ${PV} in
-				5.?.[6-9]? | 5.??.[6-9]? )
-					# Plasma 5 beta releases
-					SRC_URI="mirror://kde/unstable/plasma/${plasmapv}/${_kmname}-${PV}.tar.xz"
-					RESTRICT+=" mirror"
-					;;
-				*)
-					# Plasma 5 stable releases
-					SRC_URI="mirror://kde/stable/plasma/${plasmapv}/${_kmname}-${PV}.tar.xz" ;;
-			esac
-			;;
+			_src_uri="mirror://kde/$(_calculate_src_base)/plasma/${plasmapv}/${_pn}-${_pv}.tar.xz" ;;
 	esac
 
-	if [[ ${PN} = kdevelop* ]]; then
-		case ${PV} in
-			*.*.[6-9]? )
-				SRC_URI="mirror://kde/unstable/kdevelop/${PV}/src/${_kmname}-${PV}.tar.xz"
-				RESTRICT+=" mirror"
-				;;
-			*)
-				SRC_URI="mirror://kde/stable/kdevelop/${PV}/src/${_kmname}-${PV}.tar.xz" ;;
-		esac
-	fi
-
-	if _kde_is_unreleased ; then
-		RESTRICT+=" fetch"
-	fi
+	echo ${_src_uri}
 }
 
-# Determine fetch location for live sources
-_calculate_live_repo() {
+# @FUNCTION: _calculate_git_branch
+# @USAGE: [CATEGORY] [PV]
+# @INTERNAL
+# @DESCRIPTION:
+# Determine branch name for git sources
+_calculate_git_branch() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	SRC_URI=""
+	local _category=${1}
+	local _pv=${2}
+	local _egit_branch
 
-	# @ECLASS-VARIABLE: EGIT_MIRROR
-	# @DESCRIPTION:
-	# This variable allows easy overriding of default kde mirror service
-	# (anongit) with anything else you might want to use.
-	EGIT_MIRROR=${EGIT_MIRROR:=https://anongit.kde.org}
+	[[ -z ${_category} ]] && _category=${CATEGORY}
+	[[ -z ${_pv} ]] && _pv=${PV}
 
-	local _kmname
+	if [[ ${_pv} = ??.??.49.9999 && ${_category} = kde-apps ]]; then
+		_egit_branch="Applications/$(ver_cut 1-2)"
+	fi
+
+	if [[ ${_pv} != 9999 && ${_category} = kde-plasma ]]; then
+		_egit_branch="Plasma/$(ver_cut 1-2)"
+	fi
+
+	echo ${_egit_branch}
+}
+
+# @FUNCTION: _calculate_git_repo
+# @USAGE: [PN]
+# @INTERNAL
+# @DESCRIPTION:
+# Calculate fetch location for git sources
+_calculate_git_repo() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local _pn=${1}
+	local _egit_repo_uri
 
 	# @ECLASS-VARIABLE: EGIT_REPONAME
 	# @DESCRIPTION:
@@ -416,31 +410,58 @@ _calculate_live_repo() {
 	# name. Specify only if this differ from PN and KMNAME.
 	if [[ -n ${EGIT_REPONAME} ]]; then
 		# the repository and kmname different
-		_kmname=${EGIT_REPONAME}
+		_pn=${EGIT_REPONAME}
 	elif [[ -n ${KMNAME} ]]; then
-		_kmname=${KMNAME}
+		_pn=${KMNAME}
 	else
-		_kmname=${PN}
+		_pn=${PN}
 	fi
 
-	if [[ ${PV} == ??.??.49.9999 && ${CATEGORY} = kde-apps ]]; then
-		EGIT_BRANCH="Applications/$(ver_cut 1-2)"
+	_egit_repo_uri="${EGIT_MIRROR}/${_pn}"
+
+	echo ${_egit_repo_uri}
+}
+
+# Set fetch location for released tarballs
+_set_src_uri() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local _pn
+
+	if [[ -n ${KMNAME} ]]; then
+		_pn=${KMNAME}
+	else
+		_pn=${PN}
 	fi
 
-	if [[ ${PV} != 9999 && ${CATEGORY} = kde-plasma ]]; then
-		EGIT_BRANCH="Plasma/$(ver_cut 1-2)"
+	if [[ _calculate_src_base = unstable ]]; then
+		RESTRICT+=" mirror"
 	fi
 
-	if [[ ${PV} != 9999 && ${PN} = kdevelop* ]]; then
-		EGIT_BRANCH="$(ver_cut 1-2)"
+	if _kde_is_unreleased ; then
+		RESTRICT+=" fetch"
 	fi
 
-	EGIT_REPO_URI="${EGIT_MIRROR}/${_kmname}"
+	SRC_URI=$(_calculate_src_uri ${CATEGORY} ${_pn})
+}
+
+# Set fetch location for live sources
+_set_live_repo() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	# @ECLASS-VARIABLE: EGIT_MIRROR
+	# @DESCRIPTION:
+	# This variable allows easy overriding of default kde mirror service
+	# (anongit) with anything else you might want to use.
+	EGIT_MIRROR=${EGIT_MIRROR:=https://anongit.kde.org}
+
+	EGIT_BRANCH=$(_calculate_git_branch)
+	EGIT_REPO_URI=$(_calculate_git_repo)
 }
 
 case ${KDE_BUILD_TYPE} in
-	live) _calculate_live_repo ;;
-	*) _calculate_src_uri ;;
+	live) SRC_URI="" _set_live_repo ;;
+	*) _set_src_uri ;;
 esac
 
 debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SRC_URI is ${SRC_URI}"
