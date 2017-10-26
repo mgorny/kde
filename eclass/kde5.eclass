@@ -104,6 +104,14 @@ EXPORT_FUNCTIONS pkg_setup pkg_nofetch src_unpack src_prepare src_configure src_
 # Specifies the location of the KDE handbook if not the default.
 : ${KDE_DOC_DIR:=doc}
 
+# @ECLASS-VARIABLE: KDE_PIMADDONS_DIR
+# @DESCRIPTION:
+# If set to "false", do nothing.
+# For any other value, add kdepim-addons to SRC_URI, add "+addons" to
+# IUSE to toggle build of the corresponding kdepim-addons subdir and
+# inject translations.
+: ${KDE_PIMADDONS_DIR:=false}
+
 # @ECLASS-VARIABLE: KDE_PO_DIRS
 # @DESCRIPTION:
 # Specifies the possible locations of KDE l10n files if not the default.
@@ -226,6 +234,13 @@ case ${KDE_HANDBOOK} in
 	*)
 		IUSE+=" +handbook"
 		BDEPEND+=" handbook? ( $(add_frameworks_dep kdoctools) )"
+		;;
+esac
+
+case ${KDE_PIMADDONS_DIR} in
+	false)	;;
+	*)
+		IUSE+=" +addons"
 		;;
 esac
 
@@ -464,6 +479,16 @@ case ${KDE_BUILD_TYPE} in
 	*) _set_src_uri ;;
 esac
 
+case ${KDE_PIMADDONS_DIR} in
+	false)	;;
+	*)
+		case ${KDE_BUILD_TYPE} in
+			live) ;;
+			*) SRC_URI+=" $(_calculate_src_uri ${CATEGORY} kdepim-addons)" ;;
+		esac
+		;;
+esac
+
 debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SRC_URI is ${SRC_URI}"
 
 # @FUNCTION: kde5_pkg_pretend
@@ -523,6 +548,12 @@ kde5_src_unpack() {
 
 	if [[ ${KDE_BUILD_TYPE} = live ]]; then
 		git-r3_src_unpack
+		if [[ ${KDE_PIMADDONS_DIR} != false ]]; then
+			git-r3_fetch "$(_calculate_git_repo kdepim-addons)" \
+				"refs/heads/$(_calculate_git_branch ${CATEGORY} ${PV})"
+			git-r3_checkout "$(_calculate_git_repo kdepim-addons)" \
+				kdepim-addons-${PV}
+		fi
 	else
 		default
 	fi
@@ -534,6 +565,27 @@ kde5_src_unpack() {
 # handling of linguas, tests, handbook etc.
 kde5_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	if [[ ${KDE_PIMADDONS_DIR} != false ]]; then
+		local _kdepim_addons="../kdepim-addons-${PV}"
+		local _kdepim_addons_subdir="${_kdepim_addons}/${KDE_PIMADDONS_DIR}"
+		local _destdir="pimaddons-${KDE_PIMADDONS_DIR}"
+		if [[ -d "${_kdepim_addons_subdir}" ]]; then
+			mv "${_kdepim_addons_subdir}" ${_destdir} || die
+			echo "add_subdirectory(${_destdir})" >> CMakeLists.txt || die
+			if [[ -d "${_kdepim_addons}/po" ]]; then
+				local po lng
+				for po in $(get_po_list "${_destdir}") ; do
+					for lng in $(ls -1 "${_kdepim_addons}"/po) ; do
+						if [[ -e "${_kdepim_addons}"/po/${lng}/${po}.po ]]; then
+							cp -an "${_kdepim_addons}"/po/${lng}/${po}.po po/${lng}/ || die
+						fi
+					done
+				done
+				unset po lng
+			fi
+		fi
+	fi
 
 	cmake-utils_src_prepare
 
