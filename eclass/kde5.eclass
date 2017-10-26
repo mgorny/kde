@@ -280,6 +280,51 @@ _kde_is_unreleased() {
 	return 1
 }
 
+# @FUNCTION: _calculate_src_base
+# @USAGE: <CATEGORY> [PV]
+# @INTERNAL
+# @DESCRIPTION:
+# Determine (stable|unstable) base for released tarballs
+_calculate_src_base() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	local _category=${1}
+	local _pv=${2}
+	local _src_base
+
+	[[ -z ${_pv} ]] && _pv=${PV}
+
+	case ${_category} in
+		kde-apps)
+			case ${_pv} in
+				??.?.[6-9]? | ??.??.[6-9]? )
+					_src_base="unstable" ;;
+				*) ;;
+			esac
+			;;
+		kde-plasma)
+			case ${_pv} in
+				5.?.[6-9]? | 5.??.[6-9]? )
+					_src_base="unstable" ;; # Plasma 5 beta releases
+				*) ;;
+			esac
+			;;
+		*)
+			case ${_pv} in
+				*.*.[6-9]? )
+					_src_base="unstable" ;;
+				*) ;;
+			esac
+			;;
+	esac
+
+	if [[ -z ${_src_base} ]] ; then
+		_src_base="stable"
+	fi
+
+	echo ${_src_base}
+}
+
 # Determine fetch location for released tarballs
 _calculate_src_uri() {
 	debug-print-function ${FUNCNAME} "$@"
