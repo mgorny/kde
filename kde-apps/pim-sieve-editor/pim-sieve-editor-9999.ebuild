@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="forceoptional"
+KDE_PIMADDONS_DIR="sieveeditor"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
 inherit kde5
@@ -39,6 +40,15 @@ DEPEND="
 	$(add_qt_dep qtwidgets)
 "
 RDEPEND="${DEPEND}
+	!<kde-apps/kdepim-addons-19.04.3
 	!kde-apps/kdepim-common-libs:4
 	!kde-apps/kdepim-l10n
 "
+
+pkg_postinst() {
+	kde5_pkg_postinst
+
+	if [[ ${KDE_BUILD_TYPE} = live ]] && ! has_version "kde-misc/kregexpeditor" ; then
+		elog "${PN} Sieve editor plugin can make use of kde-misc/kregexpeditor if installed."
+	fi
+}
