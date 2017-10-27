@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="forceoptional"
+KDE_PIMADDONS_DIR="${PN}"
 inherit kde5
 
 DESCRIPTION="Assistant to import PIM data from other applications into Akonadi"
@@ -36,6 +37,7 @@ DEPEND="
 	$(add_qt_dep qtxml)
 "
 RDEPEND="${DEPEND}
+	!<kde-apps/kdepim-addons-19.04.3
 	!kde-apps/kdepim-l10n
 	!kde-apps/kmail:4
 "
