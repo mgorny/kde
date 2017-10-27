@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_HANDBOOK="forceoptional"
+KDE_PIMADDONS_DIR="${PN}"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
 inherit kde5
@@ -75,6 +76,7 @@ DEPEND="${COMMON_DEPEND}
 	test? ( $(add_kdeapps_dep akonadi 'sqlite') )
 "
 RDEPEND="${COMMON_DEPEND}
+	!<kde-apps/kdepim-addons-19.04.3
 	!kde-apps/kdepim-common-libs:4
 	!kde-apps/kdepim-l10n
 	$(add_kdeapps_dep kdepim-runtime)
