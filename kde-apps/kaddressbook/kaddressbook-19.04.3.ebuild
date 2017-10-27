@@ -5,6 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="forceoptional" # FIXME: Check back for doc in release
 KDE_TEST="forceoptional"
+KDE_PIMADDONS_DIR="${PN}"
 VIRTUALX_REQUIRED="test"
 inherit kde5
 
@@ -52,6 +53,7 @@ DEPEND="
 	dev-libs/grantlee:5
 "
 RDEPEND="${DEPEND}
+	!<kde-apps/kdepim-addons-19.04.3
 	!kde-apps/kdepim-l10n
 	$(add_kdeapps_dep kdepim-runtime)
 "
