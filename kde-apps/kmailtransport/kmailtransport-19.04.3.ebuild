@@ -3,6 +3,7 @@
 
 EAPI=7
 
+KDE_PIMADDONS_DIR="${PN}"
 KDE_TEST="true"
 inherit kde5
 
@@ -35,6 +36,7 @@ DEPEND="${COMMON_DEPEND}
 	test? ( $(add_frameworks_dep ktextwidgets) )
 "
 RDEPEND="${COMMON_DEPEND}
+	!<kde-apps/kdepim-addons-19.04.3
 	!kde-apps/kdepim-l10n
 	!kde-apps/kdepimlibs:4
 "
