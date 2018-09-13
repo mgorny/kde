@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_TEST="forceoptional"
 KMNAME="alkimia"
@@ -22,7 +22,8 @@ RDEPEND="
 	$(add_qt_dep qtdbus)
 	dev-libs/gmp:0=[cxx]
 "
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	virtual/pkgconfig
 	doc? ( app-doc/doxygen )
 "
