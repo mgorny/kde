@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 inherit kde5
@@ -16,7 +16,7 @@ HOMEPAGE="https://userbase.kde.org/Kaffeine"
 LICENSE="GPL-2+ handbook? ( FDL-1.3 )"
 IUSE="dvb"
 
-CDEPEND="
+DEPEND="
 	$(add_frameworks_dep kconfig)
 	$(add_frameworks_dep kconfigwidgets)
 	$(add_frameworks_dep kcoreaddons)
@@ -38,12 +38,12 @@ CDEPEND="
 	x11-libs/libXScrnSaver
 	dvb? ( media-libs/libv4l )
 "
-DEPEND="${CDEPEND}
+RDEPEND="${DEPEND}
+	!media-video/kaffeine:4
+"
+BDEPEND="${DEPEND}
 	sys-devel/gettext
 	virtual/pkgconfig
-"
-RDEPEND="${CDEPEND}
-	!media-video/kaffeine:4
 "
 
 DOCS=( Changelog NOTES README.md )
