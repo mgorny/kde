@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 EGIT_BRANCH="wip/qtquick"
 KDE_HANDBOOK="forceoptional"
@@ -49,7 +49,6 @@ DEPEND="
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtxml)
 	media-libs/phonon[qt5(+)]
-	sys-devel/gettext
 	crypt? ( app-crypt/qca:2[qt5(+)] )
 "
 RDEPEND="${DEPEND}
@@ -57,6 +56,7 @@ RDEPEND="${DEPEND}
 	$(add_frameworks_dep qqc2-desktop-style)
 	crypt? ( app-crypt/qca:2[ssl] )
 "
+BDEPEND="sys-devel/gettext"
 
 src_configure() {
 	local mycmakeargs=(
