@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_TEST="forceoptional"
@@ -60,7 +60,6 @@ DEPEND="${COMMON_DEPEND}
 	$(add_frameworks_dep kjobwidgets)
 	$(add_frameworks_dep kwindowsystem)
 	dev-libs/libxslt
-	virtual/pkgconfig
 	x11-misc/shared-mime-info
 	designer? (
 		$(add_frameworks_dep kdesignerplugin)
@@ -70,6 +69,7 @@ DEPEND="${COMMON_DEPEND}
 RDEPEND="${COMMON_DEPEND}
 	!app-office/skrooge:4
 "
+BDEPEND="virtual/pkgconfig"
 
 REQUIRED_USE="test? ( designer )"
 
