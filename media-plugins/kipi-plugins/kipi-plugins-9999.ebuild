@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_TEST="true"
 inherit kde5
@@ -49,11 +49,11 @@ COMMON_DEPEND="
 "
 DEPEND="${COMMON_DEPEND}
 	$(add_qt_dep qtconcurrent)
-	sys-devel/gettext
 "
 RDEPEND="${COMMON_DEPEND}
 	!media-plugins/kipi-plugins:4
 "
+BDEPEND="sys-devel/gettext"
 
 src_prepare() {
 	if [[ ${KDE_BUILD_TYPE} = release ]]; then
