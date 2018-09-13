@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="forceoptional"
 inherit kde5
@@ -25,7 +25,8 @@ RDEPEND="
 	$(add_qt_dep qtwidgets)
 	$(add_qt_dep qtxml)
 "
-DEPEND="${RDEPEND}
+DEPEND="${RDEPEND}"
+BDEPEND="
 	sys-devel/bison
 	sys-devel/flex
 "
