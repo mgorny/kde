@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_TEST="forceoptional"
 KDE_HANDBOOK="optional"
@@ -17,7 +17,7 @@ HOMEPAGE="https://community.kde.org/Elisa"
 LICENSE="LGPL-3+"
 IUSE="mpris semantic-desktop"
 
-COMMON_DEPEND="
+DEPEND="
 	$(add_frameworks_dep kcmutils)
 	$(add_frameworks_dep kconfig)
 	$(add_frameworks_dep kconfigwidgets)
@@ -42,14 +42,12 @@ COMMON_DEPEND="
 		$(add_frameworks_dep baloo)
 	)
 "
-DEPEND="${COMMON_DEPEND}
-	sys-devel/gettext
-"
-RDEPEND="${COMMON_DEPEND}
+RDEPEND="${DEPEND}
 	$(add_qt_dep qtgraphicaleffects)
 	$(add_qt_dep qtquickcontrols)
 	$(add_qt_dep qtquickcontrols2)
 "
+DEPEND="sys-devel/gettext"
 
 RESTRICT+=" test"
 
