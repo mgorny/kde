@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_HANDBOOK="forceoptional"
 VIRTUALX_REQUIRED="test"
@@ -14,7 +14,7 @@ LICENSE="GPL-2"
 KEYWORDS=""
 IUSE=""
 
-CDEPEND="
+COMMON_DEPEND="
 	$(add_frameworks_dep kconfig)
 	$(add_frameworks_dep kconfigwidgets)
 	$(add_frameworks_dep kcoreaddons)
@@ -36,11 +36,11 @@ CDEPEND="
 	x11-libs/libXi
 	x11-libs/libxcb
 "
-DEPEND="${CDEPEND}
-	sys-devel/gettext
+DEPEND="${COMMON_DEPEND}
 	x11-base/xorg-proto
 	x11-libs/libX11
 "
-RDEPEND="${CDEPEND}
+RDEPEND="${COMMON_DEPEND}
 	!kde-misc/wacomtablet:4
 "
+BDEPEND="sys-devel/gettext"
