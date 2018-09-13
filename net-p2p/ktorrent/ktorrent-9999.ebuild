@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 FRAMEWORKS_MINIMAL="5.50.0" # for syndication
 KDE_HANDBOOK="optional"
@@ -66,7 +66,6 @@ COMMON_DEPEND="
 "
 DEPEND="${COMMON_DEPEND}
 	dev-libs/boost
-	sys-devel/gettext
 "
 RDEPEND="${COMMON_DEPEND}
 	ipfilter? (
@@ -77,6 +76,7 @@ RDEPEND="${COMMON_DEPEND}
 	)
 	!net-p2p/ktorrent:4
 "
+BDEPEND="sys-devel/gettext"
 
 src_configure() {
 	local mycmakeargs=(
