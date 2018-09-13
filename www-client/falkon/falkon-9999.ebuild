@@ -1,7 +1,7 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 KDE_TEST="true"
 VIRTUALX_REQUIRED="test"
@@ -47,7 +47,6 @@ COMMON_DEPEND="
 DEPEND="${COMMON_DEPEND}
 	$(add_qt_dep linguist-tools)
 	$(add_qt_dep qtconcurrent)
-	gnome-keyring? ( virtual/pkgconfig )
 "
 if [[ ${KDE_BUILD_TYPE} != live ]]; then
 	DEPEND+=" $(add_frameworks_dep ki18n)"
@@ -56,6 +55,7 @@ RDEPEND="${COMMON_DEPEND}
 	!www-client/qupzilla
 	$(add_qt_dep qtsvg)
 "
+BDEPEND="gnome-keyring? ( virtual/pkgconfig )"
 
 src_configure() {
 	local mycmakeargs=(
