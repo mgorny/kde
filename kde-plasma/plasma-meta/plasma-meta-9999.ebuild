@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,8 +11,8 @@ HOMEPAGE="https://www.kde.org/plasma-desktop"
 LICENSE="metapackage"
 SLOT="5"
 KEYWORDS=""
-IUSE="bluetooth +browser-integration crypt +display-manager grub gtk +handbook
-legacy-systray networkmanager pam plymouth pulseaudio +sddm sdk +wallpapers"
+IUSE="bluetooth +browser-integration crypt +discover +display-manager grub gtk
++handbook legacy-systray networkmanager pam plymouth pulseaudio +sddm sdk +wallpapers"
 
 RDEPEND="
 	$(add_plasma_dep breeze)
@@ -46,6 +46,7 @@ RDEPEND="
 	bluetooth? ( $(add_plasma_dep bluedevil) )
 	browser-integration? ( $(add_plasma_dep plasma-browser-integration) )
 	crypt? ( $(add_plasma_dep plasma-vault) )
+	discover? ( $(add_plasma_dep discover) )
 	display-manager? (
 		sddm? (
 			$(add_plasma_dep sddm-kcm)
