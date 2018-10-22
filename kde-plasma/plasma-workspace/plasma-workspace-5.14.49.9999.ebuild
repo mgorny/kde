@@ -55,6 +55,7 @@ COMMON_DEPEND="
 	$(add_plasma_dep kscreenlocker)
 	$(add_plasma_dep kwin)
 	$(add_plasma_dep libksysguard)
+	$(add_plasma_dep libkworkspace)
 	$(add_qt_dep qtdbus)
 	$(add_qt_dep qtdeclarative 'widgets')
 	$(add_qt_dep qtgui 'jpeg')
@@ -126,6 +127,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-5.4-startkde-script.patch"
 	"${FILESDIR}/${PN}-5.10-startplasmacompositor-script.patch"
 	"${FILESDIR}/${PN}-5.12.80-tests-optional.patch"
+	"${FILESDIR}/${PN}-5.14.2-split-libkworkspace.patch"
 )
 
 RESTRICT+=" test"
@@ -135,6 +137,8 @@ src_prepare() {
 
 	sed -e "s|\`qtpaths|\`$(qt5_get_bindir)/qtpaths|" \
 		-i startkde/startkde.cmake startkde/startplasmacompositor.cmake || die
+
+	cmake_comment_add_subdirectory libkworkspace
 }
 
 src_configure() {
