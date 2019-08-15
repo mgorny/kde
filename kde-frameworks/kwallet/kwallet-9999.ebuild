@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing desktop-wide storage for passwords"
@@ -11,22 +13,22 @@ KEYWORDS=""
 IUSE="gpg +man"
 
 BDEPEND="
-	man? ( $(add_frameworks_dep kdoctools) )
+	man? ( >=kde-frameworks/kdoctools-${PVCUT}:5 )
 "
 DEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kconfigwidgets-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/kdbusaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kiconthemes-${PVCUT}:5
+	>=kde-frameworks/knotifications-${PVCUT}:5
+	>=kde-frameworks/kservice-${PVCUT}:5
+	>=kde-frameworks/kwidgetsaddons-${PVCUT}:5
+	>=kde-frameworks/kwindowsystem-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	dev-libs/libgcrypt:0=
 	gpg? ( >=app-crypt/gpgme-1.7.1[cxx,qt5] )
 "

@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_TEST="false"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework for configuring desktop notifications"
@@ -12,13 +14,13 @@ KEYWORDS=""
 IUSE="phonon"
 
 DEPEND="
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcompletion-${PVCUT}:5
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kio-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	phonon? ( media-libs/phonon[qt5(+)] )
 "
 RDEPEND="${DEPEND}"

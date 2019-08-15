@@ -5,6 +5,8 @@ EAPI=7
 
 KDE_QTHELP="false"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing additional format plugins for Qt's image I/O system"
@@ -13,9 +15,9 @@ KEYWORDS=""
 IUSE="eps openexr"
 
 DEPEND="
-	$(add_frameworks_dep karchive)
-	$(add_qt_dep qtgui)
-	eps? ( $(add_qt_dep qtprintsupport) )
+	>=kde-frameworks/karchive-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	eps? ( >=dev-qt/qtprintsupport-${QT_MINIMAL}:5 )
 	openexr? (
 		media-libs/ilmbase:=
 		media-libs/openexr:=

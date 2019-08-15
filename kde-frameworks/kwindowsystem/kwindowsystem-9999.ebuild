@@ -4,6 +4,8 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing access to properties and features of the window manager"
@@ -12,13 +14,13 @@ KEYWORDS=""
 IUSE="nls X"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 RDEPEND="
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	X? (
-		$(add_qt_dep qtx11extras)
+		>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 		x11-libs/libX11
 		x11-libs/libXfixes
 		x11-libs/libxcb

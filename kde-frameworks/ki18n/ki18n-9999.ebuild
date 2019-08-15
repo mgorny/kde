@@ -4,6 +4,8 @@
 EAPI=7
 
 PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5 python-single-r1
 
 DESCRIPTION="Framework based on Gettext for internationalizing user interface text"
@@ -14,12 +16,12 @@ IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="${PYTHON_DEPS}
-	$(add_qt_dep qtdeclarative)
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
 	sys-devel/gettext
 	virtual/libintl
 "
 DEPEND="${RDEPEND}
-	test? ( $(add_qt_dep qtconcurrent) )
+	test? ( >=dev-qt/qtconcurrent-${QT_MINIMAL}:5 )
 "
 
 PATCHES=( "${FILESDIR}/${PN}-5.57.0-python.patch" )

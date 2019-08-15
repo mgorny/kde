@@ -4,6 +4,8 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework to let applications perform actions as a privileged user"
@@ -12,13 +14,13 @@ KEYWORDS=""
 IUSE="nls +policykit"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	policykit? ( sys-auth/polkit-qt[qt5(+)] )
 "
 RDEPEND="${DEPEND}"

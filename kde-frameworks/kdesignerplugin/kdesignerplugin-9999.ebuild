@@ -6,6 +6,8 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KDE_QTHELP="false"
 KDE_TEST="false"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing plugins to use KDE frameworks widgets in QtDesigner"
@@ -14,10 +16,10 @@ KEYWORDS=""
 IUSE="nls"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
 "
 RDEPEND="${DEPEND}"

@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="NetworkManager bindings for Qt"
@@ -14,8 +16,8 @@ BDEPEND="
 	virtual/pkgconfig
 "
 DEPEND="
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtnetwork)
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
 	>=net-misc/networkmanager-1.4.0-r1[teamd=]
 "
 RDEPEND="${DEPEND}

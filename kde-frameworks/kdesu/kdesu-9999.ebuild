@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-2)
 inherit kde5
 
 DESCRIPTION="Framework to handle super user actions"
@@ -12,11 +13,11 @@ KEYWORDS=""
 IUSE="X"
 
 RDEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kpty)
-	$(add_frameworks_dep kservice)
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kpty-${PVCUT}:5
+	>=kde-frameworks/kservice-${PVCUT}:5
 	X? ( x11-libs/libX11 )
 "
 DEPEND="${RDEPEND}

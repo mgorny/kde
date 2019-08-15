@@ -6,6 +6,8 @@ EAPI=7
 KDE_DESIGNERPLUGIN="true"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing transparent file and data management"
@@ -15,46 +17,46 @@ IUSE="acl +handbook kerberos +kwallet X"
 
 # drop qtnetwork subslot operator when QT_MINIMAL >= 5.12.0
 RDEPEND="
-	$(add_frameworks_dep kauth)
-	$(add_frameworks_dep karchive)
-	$(add_frameworks_dep kbookmarks)
-	$(add_frameworks_dep kcodecs)
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kitemviews)
-	$(add_frameworks_dep kjobwidgets)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep ktextwidgets)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep solid)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork 'ssl' '' '5=')
-	$(add_qt_dep qtscript)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kauth-${PVCUT}:5
+	>=kde-frameworks/karchive-${PVCUT}:5
+	>=kde-frameworks/kbookmarks-${PVCUT}:5
+	>=kde-frameworks/kcodecs-${PVCUT}:5
+	>=kde-frameworks/kcompletion-${PVCUT}:5
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kconfigwidgets-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/kcrash-${PVCUT}:5
+	>=kde-frameworks/kdbusaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kiconthemes-${PVCUT}:5
+	>=kde-frameworks/kitemviews-${PVCUT}:5
+	>=kde-frameworks/kjobwidgets-${PVCUT}:5
+	>=kde-frameworks/knotifications-${PVCUT}:5
+	>=kde-frameworks/kservice-${PVCUT}:5
+	>=kde-frameworks/ktextwidgets-${PVCUT}:5
+	>=kde-frameworks/kwidgetsaddons-${PVCUT}:5
+	>=kde-frameworks/kwindowsystem-${PVCUT}:5
+	>=kde-frameworks/kxmlgui-${PVCUT}:5
+	>=kde-frameworks/solid-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5=[ssl]
+	>=dev-qt/qtscript-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	dev-libs/libxml2
 	dev-libs/libxslt
 	acl? (
 		sys-apps/attr
 		virtual/acl
 	)
-	handbook? ( $(add_frameworks_dep kdoctools) )
+	handbook? ( >=kde-frameworks/kdoctools-${PVCUT}:5 )
 	kerberos? ( virtual/krb5 )
-	kwallet? ( $(add_frameworks_dep kwallet) )
-	X? ( $(add_qt_dep qtx11extras) )
+	kwallet? ( >=kde-frameworks/kwallet-${PVCUT}:5 )
+	X? ( >=dev-qt/qtx11extras-${QT_MINIMAL}:5 )
 "
 DEPEND="${RDEPEND}
-	$(add_qt_dep qtconcurrent)
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
 	test? ( sys-libs/zlib )
 	X? (
 		x11-base/xorg-proto
@@ -63,7 +65,7 @@ DEPEND="${RDEPEND}
 	)
 "
 PDEPEND="
-	$(add_frameworks_dep kded)
+	>=kde-frameworks/kded-${PVCUT}:5
 "
 
 # tests hang

@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="QRCode and data matrix barcode library"
@@ -13,10 +15,10 @@ KEYWORDS=""
 IUSE="qml"
 
 DEPEND="
-	$(add_qt_dep qtgui)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	media-gfx/qrencode:=
 	media-libs/libdmtx
-	qml? ( $(add_qt_dep qtdeclarative) )
+	qml? ( >=dev-qt/qtdeclarative-${QT_MINIMAL}:5 )
 "
 RDEPEND="${DEPEND}"
 

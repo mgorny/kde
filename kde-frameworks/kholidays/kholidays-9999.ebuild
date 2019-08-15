@@ -5,6 +5,8 @@ EAPI=7
 
 KDE_QTHELP="false"
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library to determine holidays and other special events for a geographical region"
@@ -13,10 +15,10 @@ KEYWORDS=""
 IUSE="nls"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_qt_dep qtdeclarative)
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}
 	!kde-apps/kholidays:5

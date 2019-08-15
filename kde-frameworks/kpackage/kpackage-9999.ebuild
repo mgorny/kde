@@ -3,6 +3,7 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
 inherit kde5
 
 DESCRIPTION="Framework to install and load packages of non binary content"
@@ -11,12 +12,12 @@ KEYWORDS=""
 IUSE="man"
 
 BDEPEND="
-	man? ( $(add_frameworks_dep kdoctools) )
+	man? ( >=kde-frameworks/kdoctools-${PVCUT}:5 )
 "
 DEPEND="
-	$(add_frameworks_dep karchive)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
+	>=kde-frameworks/karchive-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
 "
 RDEPEND="${DEPEND}"
 

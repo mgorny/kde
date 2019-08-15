@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework for converting units"
@@ -11,8 +13,8 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep ki18n)
-	$(add_qt_dep qtnetwork)
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

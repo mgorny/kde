@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="ModemManager bindings for Qt"
@@ -14,8 +16,8 @@ BDEPEND="
 	virtual/pkgconfig
 "
 DEPEND="
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtxml)
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	net-misc/modemmanager
 "
 RDEPEND="${DEPEND}"

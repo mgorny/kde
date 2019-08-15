@@ -5,6 +5,7 @@ EAPI=7
 
 KDE_HANDBOOK="optional"
 KDE_QTHELP="false"
+PVCUT=$(ver_cut 1-2)
 inherit kde5
 
 DESCRIPTION="ECMAScipt compatible parser and engine"

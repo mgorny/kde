@@ -7,6 +7,8 @@ KDE_EXAMPLES="true"
 KDE_QTHELP="false"
 KDE_TEST="true"
 KMNAME="${PN}2"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Lightweight user interface framework for mobile and convergent applications"
@@ -18,16 +20,16 @@ KEYWORDS=""
 IUSE=""
 
 BDEPEND="
-	$(add_qt_dep linguist-tools)
+	>=dev-qt/linguist-tools-${QT_MINIMAL}:5
 "
 DEPEND="
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgraphicaleffects)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtquickcontrols2)
-	$(add_qt_dep qtsvg)
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgraphicaleffects-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtquickcontrols2-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

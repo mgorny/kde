@@ -6,6 +6,8 @@ EAPI=7
 KDE_AUTODEPS="false"
 KDE_DEBUG="false"
 KDE_QTHELP="false"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Breeze SVG icon theme"
@@ -14,11 +16,11 @@ KEYWORDS=""
 IUSE=""
 
 BDEPEND="
-	$(add_frameworks_dep extra-cmake-modules)
-	$(add_qt_dep qtcore)
+	>=kde-frameworks/extra-cmake-modules-${PVCUT}:5
+	>=dev-qt/qtcore-${QT_MINIMAL}:5
 	test? ( app-misc/fdupes )
 "
-DEPEND="test? ( $(add_qt_dep qttest) )"
+DEPEND="test? ( >=dev-qt/qttest-${QT_MINIMAL}:5 )"
 
 src_configure() {
 	local mycmakeargs=(

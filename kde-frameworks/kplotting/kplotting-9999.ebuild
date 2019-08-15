@@ -5,6 +5,8 @@ EAPI=7
 
 KDE_DESIGNERPLUGIN="true"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing easy data-plotting functions"
@@ -13,7 +15,7 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"

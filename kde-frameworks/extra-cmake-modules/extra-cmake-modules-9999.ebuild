@@ -9,6 +9,8 @@ KDE_AUTODEPS="false"
 KDE_DEBUG="false"
 KDE_QTHELP="false"
 KDE_TEST="false"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5 python-any-r1
 
 DESCRIPTION="Extra modules and scripts for CMake"
@@ -22,11 +24,11 @@ BDEPEND="
 	doc? (
 		${PYTHON_DEPS}
 		$(python_gen_any_dep 'dev-python/sphinx[${PYTHON_USEDEP}]')
-		$(add_qt_dep qthelp)
+		>=dev-qt/qthelp-${QT_MINIMAL}:5
 	)
 	test? (
-		$(add_qt_dep qtcore)
-		$(add_qt_dep linguist-tools)
+		>=dev-qt/qtcore-${QT_MINIMAL}:5
+		>=dev-qt/linguist-tools-${QT_MINIMAL}:5
 	)
 "
 RDEPEND="

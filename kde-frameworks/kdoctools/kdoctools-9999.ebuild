@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_QTHELP="false"
+PVCUT=$(ver_cut 1-2)
 inherit kde5
 
 DESCRIPTION="Tools to generate documentation in various formats from DocBook files"
@@ -14,10 +15,10 @@ IUSE="nls"
 BDEPEND="
 	dev-lang/perl
 	dev-perl/URI
-	nls? ( $(add_frameworks_dep ki18n) )
+	nls? ( >=kde-frameworks/ki18n-${PVCUT}:5 )
 "
 DEPEND="
-	$(add_frameworks_dep karchive)
+	>=kde-frameworks/karchive-${PVCUT}:5
 	app-text/docbook-xml-dtd:4.5
 	app-text/docbook-xsl-stylesheets
 	app-text/sgml-common

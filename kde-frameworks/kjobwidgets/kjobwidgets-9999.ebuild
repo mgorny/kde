@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing assorted widgets for showing the progress of jobs"
@@ -11,15 +13,15 @@ KEYWORDS=""
 IUSE="nls X"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 RDEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
-	X? ( $(add_qt_dep qtx11extras) )
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/kwidgetsaddons-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	X? ( >=dev-qt/qtx11extras-${QT_MINIMAL}:5 )
 "
 DEPEND="${RDEPEND}
 	X? (

@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Advanced plugin and service introspection"
@@ -13,19 +15,19 @@ IUSE="+man"
 BDEPEND="
 	sys-devel/bison
 	sys-devel/flex
-	man? ( $(add_frameworks_dep kdoctools) )
+	man? ( >=kde-frameworks/kdoctools-${PVCUT}:5 )
 "
 RDEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/kcrash-${PVCUT}:5
+	>=kde-frameworks/kdbusaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 "
 DEPEND="${RDEPEND}
-	test? ( $(add_qt_dep qtconcurrent) )
+	test? ( >=dev-qt/qtconcurrent-${QT_MINIMAL}:5 )
 "
 
 # requires running kde environment

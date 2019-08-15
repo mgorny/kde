@@ -5,6 +5,8 @@ EAPI=7
 
 KDE_DESIGNERPLUGIN="true"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing an assortment of widgets for displaying and editing text"
@@ -13,19 +15,19 @@ KEYWORDS=""
 IUSE="speech"
 
 DEPEND="
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep sonnet)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
-	speech? ( $(add_qt_dep qtspeech) )
+	>=kde-frameworks/kcompletion-${PVCUT}:5
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kconfigwidgets-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kiconthemes-${PVCUT}:5
+	>=kde-frameworks/kservice-${PVCUT}:5
+	>=kde-frameworks/kwidgetsaddons-${PVCUT}:5
+	>=kde-frameworks/kwindowsystem-${PVCUT}:5
+	>=kde-frameworks/sonnet-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	speech? ( >=dev-qt/qtspeech-${QT_MINIMAL}:5 )
 "
 RDEPEND="${DEPEND}"
 

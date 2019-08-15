@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_QTHELP="false"
 KDE_TEST="forceoptional"
+KDE_APPS_MINIMAL=19.04.3
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library for providing abstractions to get the developer's purposes fulfilled"
@@ -13,16 +16,16 @@ KEYWORDS=""
 IUSE="+kaccounts"
 
 DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kirigami)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kio-${PVCUT}:5
+	>=kde-frameworks/kirigami-${PVCUT}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	kaccounts? (
-		$(add_kdeapps_dep kaccounts-integration)
+		>=kde-apps/kaccounts-integration-${KDE_APPS_MINIMAL}:5
 		net-libs/accounts-qt
 	)
 "

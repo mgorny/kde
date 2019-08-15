@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing client-side support for the XML-RPC protocol"
@@ -12,9 +14,9 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kio-${PVCUT}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"

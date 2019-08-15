@@ -3,6 +3,7 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
 inherit kde5
 
 DESCRIPTION="Framework for pseudo terminal devices and running child processes"
@@ -11,8 +12,8 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
 	sys-libs/libutempter
 "
 RDEPEND="${DEPEND}"

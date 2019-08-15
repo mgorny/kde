@@ -8,6 +8,7 @@ KDE_DEBUG="false"
 KDE_TEST="false"
 DISTUTILS_SINGLE_IMPL="true"
 PYTHON_COMPAT=( python2_7 )
+PVCUT=$(ver_cut 1-2)
 inherit kde5 distutils-r1
 
 DESCRIPTION="Framework for building KDE API documentation in a standard format and style"

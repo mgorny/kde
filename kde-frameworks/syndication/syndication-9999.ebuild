@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library for parsing RSS and Atom feeds"
@@ -12,13 +14,13 @@ KEYWORDS=""
 IUSE=""
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcodecs)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kcodecs-${PVCUT}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 "
 DEPEND="${COMMON_DEPEND}
 	test? (
-		$(add_qt_dep qtnetwork)
-		$(add_qt_dep qtwidgets)
+		>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+		>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	)
 "
 RDEPEND="${COMMON_DEPEND}

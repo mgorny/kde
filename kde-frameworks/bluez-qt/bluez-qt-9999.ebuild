@@ -4,6 +4,8 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5 udev
 
 DESCRIPTION="Qt wrapper for Bluez 5 DBus API"
@@ -12,9 +14,9 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtnetwork)
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

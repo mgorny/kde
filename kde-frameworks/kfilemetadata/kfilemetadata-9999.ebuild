@@ -4,6 +4,8 @@
 EAPI=7
 
 PYTHON_COMPAT=( python{2_7,3_{5,6,7}} )
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5 python-any-r1
 
 DESCRIPTION="Library for extracting file metadata"
@@ -14,16 +16,16 @@ BDEPEND="
 	test? ( ${PYTHON_DEPS} )
 "
 RDEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	epub? ( app-text/ebook-tools )
 	exif? ( media-gfx/exiv2:= )
 	ffmpeg? (
 		libav? ( >=media-video/libav-12.2:= )
 		!libav? ( media-video/ffmpeg:0= )
 	)
-	office? ( $(add_frameworks_dep karchive) )
+	office? ( >=kde-frameworks/karchive-${PVCUT}:5 )
 	pdf? ( app-text/poppler[qt5] )
 	taglib? ( media-libs/taglib )
 "

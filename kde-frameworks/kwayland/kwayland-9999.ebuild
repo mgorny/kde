@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Qt-style client and server library wrapper for Wayland libraries"
@@ -14,14 +16,14 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_qt_dep qtconcurrent)
-	$(add_qt_dep qtgui 'egl')
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5[egl]
 	>=dev-libs/wayland-1.15.0
 	media-libs/mesa[egl]
 	>=dev-libs/wayland-protocols-1.15
 "
 RDEPEND="${DEPEND}
-	$(add_qt_dep qtwayland)
+	>=dev-qt/qtwayland-${QT_MINIMAL}:5
 "
 
 # All failing, I guess we need a virtual wayland server

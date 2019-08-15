@@ -3,6 +3,9 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+PLASMA_MINIMAL=5.15.5
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework for working with KDE activities"
@@ -11,15 +14,15 @@ KEYWORDS=""
 IUSE=""
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative widgets)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtsql)
+	>=kde-frameworks/kconfig-${PVCUT}:5
+	>=kde-frameworks/kcoreaddons-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5[widgets]
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtsql-${QT_MINIMAL}:5
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_plasma_dep kactivitymanagerd)
+	>=kde-plasma/kactivitymanagerd-${PLASMA_MINIMAL}:5
 "
 DEPEND="${COMMON_DEPEND}
 	>=dev-libs/boost-1.54

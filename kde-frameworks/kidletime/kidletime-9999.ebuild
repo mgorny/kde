@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_TEST="false"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework for detection and notification of device idle time"
@@ -14,16 +16,16 @@ IUSE="X xscreensaver"
 REQUIRED_USE="xscreensaver? ( X )"
 
 DEPEND="
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	X? (
-		$(add_qt_dep qtx11extras)
+		>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 		x11-libs/libX11
 		x11-libs/libxcb
 		x11-libs/libXext
 	)
 	xscreensaver? (
-		$(add_qt_dep qtdbus)
+		>=dev-qt/qtdbus-${QT_MINIMAL}:5
 		x11-libs/libXScrnSaver
 	)
 "

@@ -6,6 +6,8 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KDE_QTHELP="false"
 KDE_TEST="false"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework binding JavaScript objects to QObjects"
@@ -14,13 +16,13 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kjs)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/ki18n-${PVCUT}:5
+	>=kde-frameworks/kjs-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 "
 DEPEND="${RDEPEND}
-	$(add_qt_dep designer)
+	>=dev-qt/designer-${QT_MINIMAL}:5
 "

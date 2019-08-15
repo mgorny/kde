@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_TEST="forceoptional"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework for syntax highlighting"
@@ -13,12 +15,12 @@ IUSE="nls"
 
 BDEPEND="
 	dev-lang/perl
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtxmlpatterns)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtxmlpatterns-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework for network service discovery using Zeroconf"
@@ -11,12 +13,12 @@ KEYWORDS=""
 IUSE="nls zeroconf"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_qt_dep qtnetwork)
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
 	zeroconf? (
-		$(add_qt_dep qtdbus)
+		>=dev-qt/qtdbus-${QT_MINIMAL}:5
 		net-dns/avahi[mdnsresponder-compat]
 	)
 "

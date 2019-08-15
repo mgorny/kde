@@ -3,6 +3,7 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
 inherit kde5
 
 DESCRIPTION="Framework for reading, creation, and manipulation of various archive formats"

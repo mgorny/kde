@@ -4,6 +4,8 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing assorted high-level user interface components"
@@ -12,8 +14,8 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtx11extras)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	x11-libs/libX11
 "
 DEPEND="${RDEPEND}

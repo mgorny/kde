@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-2)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Framework providing access to Open Collaboration Services"
@@ -11,7 +13,7 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	$(add_qt_dep qtnetwork)
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
 "
 DEPEND="${RDEPEND}"
 
