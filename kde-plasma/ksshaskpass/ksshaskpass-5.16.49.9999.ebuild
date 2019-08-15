@@ -3,6 +3,9 @@
 
 EAPI=7
 
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="KDE implementation of ssh-askpass with Kwallet integration"
@@ -11,11 +14,11 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kwallet)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwallet-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

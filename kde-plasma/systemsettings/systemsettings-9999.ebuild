@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_HANDBOOK="forceoptional"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="System settings utility"
@@ -11,36 +14,36 @@ KEYWORDS=""
 IUSE="classic gtk"
 
 DEPEND="
-	$(add_frameworks_dep kactivities)
-	$(add_frameworks_dep kactivities-stats)
-	$(add_frameworks_dep kauth)
-	$(add_frameworks_dep kcmutils)
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kitemviews)
-	$(add_frameworks_dep kpackage)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_plasma_dep libkworkspace)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative 'widgets')
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
-	classic? ( $(add_frameworks_dep khtml) )
+	>=kde-frameworks/kactivities-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kactivities-stats-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kauth-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcmutils-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kitemviews-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kpackage-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-plasma/libkworkspace-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5[widgets]
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	classic? ( >=kde-frameworks/khtml-${FRAMEWORKS_MINIMAL}:5 )
 "
 RDEPEND="${DEPEND}
-	$(add_frameworks_dep kirigami)
-	gtk? ( $(add_plasma_dep kde-gtk-config) )
+	>=kde-frameworks/kirigami-${FRAMEWORKS_MINIMAL}:5
+	gtk? ( >=kde-plasma/kde-gtk-config-${PVCUT}:5 )
 "
 
 src_prepare() {

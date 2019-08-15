@@ -6,6 +6,9 @@ EAPI=7
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="optional"
 VIRTUALX_REQUIRED="test"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Tools based on KDE Frameworks 5 to better interact with the system"
@@ -16,27 +19,27 @@ IUSE="kdesu X"
 REQUIRED_USE="kdesu? ( X )"
 
 DEPEND="
-	$(add_frameworks_dep kactivities)
-	$(add_frameworks_dep kcmutils)
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_plasma_dep libkworkspace)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwidgets)
-	kdesu? ( $(add_frameworks_dep kdesu) )
+	>=kde-frameworks/kactivities-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcmutils-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-plasma/libkworkspace-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	kdesu? ( >=kde-frameworks/kdesu-${FRAMEWORKS_MINIMAL}:5 )
 	X? (
-		$(add_qt_dep qtx11extras)
+		>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 		x11-libs/libX11
 	)
 "

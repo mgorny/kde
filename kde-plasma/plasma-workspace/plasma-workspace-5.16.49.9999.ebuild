@@ -6,6 +6,10 @@ EAPI=7
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
+KDE_APPS_MINIMAL=19.04.3
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5 qmake-utils
 
 DESCRIPTION="KDE Plasma workspace"
@@ -15,54 +19,54 @@ IUSE="appstream +calendar geolocation gps qalculate qrcode +semantic-desktop sys
 REQUIRED_USE="gps? ( geolocation )"
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kactivities)
-	$(add_frameworks_dep kauth)
-	$(add_frameworks_dep kbookmarks)
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep kded)
-	$(add_frameworks_dep kdelibs4support)
-	$(add_frameworks_dep kglobalaccel)
-	$(add_frameworks_dep kguiaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kidletime)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kitemmodels)
-	$(add_frameworks_dep kitemviews)
-	$(add_frameworks_dep kjobwidgets)
-	$(add_frameworks_dep knewstuff)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep knotifyconfig)
-	$(add_frameworks_dep kpackage)
-	$(add_frameworks_dep krunner)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep ktexteditor)
-	$(add_frameworks_dep ktextwidgets)
-	$(add_frameworks_dep kwallet)
-	$(add_frameworks_dep kwayland)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep plasma)
-	$(add_frameworks_dep solid)
-	$(add_plasma_dep kscreenlocker)
-	$(add_plasma_dep kwin)
-	$(add_plasma_dep libksysguard)
-	$(add_plasma_dep libkworkspace)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative 'widgets')
-	$(add_qt_dep qtgui 'jpeg')
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtsql)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtx11extras)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kactivities-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kauth-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kbookmarks-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kded-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdelibs4support-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kglobalaccel-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kguiaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kidletime-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kitemmodels-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kitemviews-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kjobwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knewstuff-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifications-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifyconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kpackage-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/krunner-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ktexteditor-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ktextwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwallet-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/plasma-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/solid-${FRAMEWORKS_MINIMAL}:5
+	>=kde-plasma/kscreenlocker-${PVCUT}:5
+	>=kde-plasma/kwin-${PVCUT}:5
+	>=kde-plasma/libksysguard-${PVCUT}:5
+	>=kde-plasma/libkworkspace-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5[widgets]
+	>=dev-qt/qtgui-${QT_MINIMAL}:5[jpeg]
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtsql-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	media-libs/phonon[qt5(+)]
 	sys-libs/zlib
 	x11-libs/libICE
@@ -76,29 +80,29 @@ COMMON_DEPEND="
 	x11-libs/xcb-util
 	x11-libs/xcb-util-image
 	appstream? ( dev-libs/appstream[qt5] )
-	calendar? ( $(add_frameworks_dep kholidays) )
-	geolocation? ( $(add_frameworks_dep networkmanager-qt) )
+	calendar? ( >=kde-frameworks/kholidays-${FRAMEWORKS_MINIMAL}:5 )
+	geolocation? ( >=kde-frameworks/networkmanager-qt-${FRAMEWORKS_MINIMAL}:5 )
 	gps? ( sci-geosciences/gpsd )
 	qalculate? ( sci-libs/libqalculate:= )
-	qrcode? ( $(add_frameworks_dep prison) )
-	semantic-desktop? ( $(add_frameworks_dep baloo) )
+	qrcode? ( >=kde-frameworks/prison-${FRAMEWORKS_MINIMAL}:5 )
+	semantic-desktop? ( >=kde-frameworks/baloo-${FRAMEWORKS_MINIMAL}:5 )
 "
 DEPEND="${COMMON_DEPEND}
-	$(add_qt_dep qtconcurrent)
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
 	x11-base/xorg-proto
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_frameworks_dep kdesu)
-	$(add_frameworks_dep kirigami)
-	$(add_kdeapps_dep kio-extras)
-	$(add_plasma_dep ksysguard)
-	$(add_plasma_dep milou)
-	$(add_plasma_dep plasma-integration)
-	$(add_qt_dep qdbus)
-	$(add_qt_dep qtgraphicaleffects)
-	$(add_qt_dep qtpaths)
-	$(add_qt_dep qtquickcontrols 'widgets')
-	$(add_qt_dep qtquickcontrols2)
+	>=kde-frameworks/kdesu-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kirigami-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/kio-extras-${KDE_APPS_MINIMAL}:5
+	>=kde-plasma/ksysguard-${PVCUT}:5
+	>=kde-plasma/milou-${PVCUT}:5
+	>=kde-plasma/plasma-integration-${PVCUT}:5
+	>=dev-qt/qdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgraphicaleffects-${QT_MINIMAL}:5
+	>=dev-qt/qtpaths-${QT_MINIMAL}:5
+	>=dev-qt/qtquickcontrols-${QT_MINIMAL}:5[widgets]
+	>=dev-qt/qtquickcontrols2-${QT_MINIMAL}:5
 	app-text/iso-codes
 	x11-apps/xmessage
 	x11-apps/xprop
@@ -109,7 +113,7 @@ RDEPEND="${COMMON_DEPEND}
 	!<kde-plasma/plasma-desktop-5.14.80:5
 "
 PDEPEND="
-	$(add_plasma_dep kde-cli-tools)
+	>=kde-plasma/kde-cli-tools-${PVCUT}:5
 "
 
 PATCHES=(

@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_TEST="true"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="KDE Plasma applet for NetworkManager"
@@ -12,45 +15,45 @@ KEYWORDS=""
 IUSE="modemmanager openconnect teamd"
 
 DEPEND="
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kitemviews)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwallet)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep networkmanager-qt 'teamd=')
-	$(add_frameworks_dep plasma)
-	$(add_frameworks_dep solid)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative 'widgets')
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kitemviews-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifications-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwallet-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/networkmanager-qt-${FRAMEWORKS_MINIMAL}:5[teamd=]
+	>=kde-frameworks/plasma-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/solid-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5[widgets]
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	>=app-crypt/qca-2.1.1:2[qt5(+)]
 	net-misc/networkmanager[teamd=]
 	modemmanager? (
-		$(add_frameworks_dep modemmanager-qt)
-		$(add_qt_dep qtxml)
+		>=kde-frameworks/modemmanager-qt-${FRAMEWORKS_MINIMAL}:5
+		>=dev-qt/qtxml-${QT_MINIMAL}:5
 		net-misc/mobile-broadband-provider-info
 	)
 	openconnect? (
-		$(add_qt_dep qtxml)
+		>=dev-qt/qtxml-${QT_MINIMAL}:5
 		net-vpn/networkmanager-openconnect
 		net-vpn/openconnect:=
 	)
 "
 RDEPEND="${DEPEND}
-	$(add_plasma_dep kde-cli-tools)
+	>=kde-plasma/kde-cli-tools-${PVCUT}:5
 "
 
 src_configure() {

@@ -3,6 +3,9 @@
 
 EAPI=7
 
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="System service to manage user's activities, track the usage patterns etc."
@@ -11,20 +14,20 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kglobalaccel)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtsql 'sqlite')
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kglobalaccel-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtsql-${QT_MINIMAL}:5[sqlite]
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 "
 DEPEND="${RDEPEND}
 	dev-libs/boost

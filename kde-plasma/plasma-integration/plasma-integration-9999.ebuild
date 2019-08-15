@@ -4,6 +4,9 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Qt Platform Theme integration plugins for the Plasma workspaces"
@@ -12,25 +15,25 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kjobwidgets)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kwayland)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_plasma_dep breeze)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui 'dbus' '' '5=')
-	$(add_qt_dep qtquickcontrols2)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtx11extras)
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kjobwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifications-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-plasma/breeze-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5=[dbus]
+	>=dev-qt/qtquickcontrols2-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	x11-libs/libXcursor
 	x11-libs/libxcb
 "

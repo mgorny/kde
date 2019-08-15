@@ -6,6 +6,9 @@ EAPI=7
 KDE_QTHELP="true"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Plasma screen management library"
@@ -14,10 +17,10 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kwayland)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtx11extras)
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	x11-libs/libxcb
 "
 RDEPEND="${DEPEND}"

@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_AUTODEPS="false"
 KMNAME="plasma-workspace"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Legacy xembed tray icons support for SNI-only system trays"
@@ -14,12 +17,12 @@ LICENSE="GPL-2"
 KEYWORDS=""
 
 DEPEND="
-	$(add_frameworks_dep extra-cmake-modules)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_qt_dep qtcore)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtx11extras)
+	>=kde-frameworks/extra-cmake-modules-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtcore-${QT_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	x11-libs/libxcb
 	x11-libs/libXtst
 	x11-libs/xcb-util-image

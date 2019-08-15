@@ -4,6 +4,9 @@
 EAPI=7
 
 VIRTUALX_REQUIRED="test"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Backend implementation for xdg-desktop-portal that is using Qt/KDE Frameworks"
@@ -12,15 +15,15 @@ KEYWORDS=""
 IUSE="screencast"
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtprintsupport 'cups')
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifications-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtprintsupport-${QT_MINIMAL}:5[cups]
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	screencast? (
 		dev-libs/glib:2
 		media-libs/libepoxy
@@ -29,8 +32,8 @@ COMMON_DEPEND="
 	)
 "
 DEPEND="${COMMON_DEPEND}
-	$(add_frameworks_dep kwayland)
-	$(add_qt_dep qtconcurrent)
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
 "
 RDEPEND="${COMMON_DEPEND}
 	screencast? ( sys-apps/xdg-desktop-portal[screencast] )

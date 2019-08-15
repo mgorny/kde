@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5 pam
 
 DESCRIPTION="Library and components for secure lock screen architecture"
@@ -14,28 +17,28 @@ IUSE="consolekit +pam seccomp"
 REQUIRED_USE="seccomp? ( pam )"
 
 RDEPEND="
-	$(add_frameworks_dep kcmutils)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep kglobalaccel)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kidletime)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kpackage)
-	$(add_frameworks_dep ktextwidgets)
-	$(add_frameworks_dep kwayland)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep solid)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative 'widgets')
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtx11extras)
+	>=kde-frameworks/kcmutils-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kglobalaccel-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kidletime-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifications-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kpackage-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ktextwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/solid-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5[widgets]
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	dev-libs/wayland
 	x11-libs/libX11
 	x11-libs/libXi
@@ -49,7 +52,7 @@ DEPEND="${RDEPEND}
 	x11-base/xorg-proto
 "
 PDEPEND="
-	$(add_plasma_dep kde-cli-tools)
+	>=kde-plasma/kde-cli-tools-${PVCUT}:5
 "
 
 RESTRICT+=" test"

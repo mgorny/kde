@@ -5,6 +5,7 @@ EAPI=7
 
 KDE_AUTODEPS="false"
 KDE_DEBUG="false"
+PVCUT=$(ver_cut 1-3)
 inherit kde5
 
 DESCRIPTION="Breeze theme for GRUB"

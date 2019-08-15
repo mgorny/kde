@@ -3,6 +3,8 @@
 
 EAPI=7
 
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
 inherit kde5
 
 DESCRIPTION="KWallet PAM module to not enter password again"
@@ -11,7 +13,7 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kwallet)
+	>=kde-frameworks/kwallet-${FRAMEWORKS_MINIMAL}:5
 	dev-libs/libgcrypt:0=
 	virtual/pam
 "

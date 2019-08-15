@@ -6,6 +6,9 @@ EAPI=7
 KDE_HANDBOOK="optional"
 KDE_TEST="optional"
 VIRTUALX_REQUIRED="test"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Flexible, composited Window Manager for windowing systems on Linux"
@@ -14,41 +17,41 @@ KEYWORDS=""
 IUSE="caps gles2 multimedia"
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kactivities)
-	$(add_frameworks_dep kauth)
-	$(add_frameworks_dep kcmutils)
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep kglobalaccel '' '' '5=')
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kidletime '' '' '5=')
-	$(add_frameworks_dep kinit)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep knewstuff)
-	$(add_frameworks_dep knotifications)
-	$(add_frameworks_dep kpackage)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep ktextwidgets)
-	$(add_frameworks_dep kwayland)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem X)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep plasma)
-	$(add_plasma_dep breeze)
-	$(add_plasma_dep kdecoration)
-	$(add_plasma_dep kscreenlocker)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui 'gles2=' '' '5=')
-	$(add_qt_dep qtscript)
-	$(add_qt_dep qtsensors)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtx11extras)
+	>=kde-frameworks/kactivities-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kauth-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcmutils-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kglobalaccel-${FRAMEWORKS_MINIMAL}:5=
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kidletime-${FRAMEWORKS_MINIMAL}:5=
+	>=kde-frameworks/kinit-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knewstuff-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifications-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kpackage-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ktextwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5[X]
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/plasma-${FRAMEWORKS_MINIMAL}:5
+	>=kde-plasma/breeze-${PVCUT}:5
+	>=kde-plasma/kdecoration-${PVCUT}:5
+	>=kde-plasma/kscreenlocker-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5=[gles2=]
+	>=dev-qt/qtscript-${QT_MINIMAL}:5
+	>=dev-qt/qtsensors-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	>=dev-libs/libinput-1.9
 	>=dev-libs/wayland-1.2
 	media-libs/fontconfig
@@ -70,19 +73,19 @@ COMMON_DEPEND="
 	caps? ( sys-libs/libcap )
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_frameworks_dep kirigami)
-	$(add_qt_dep qtquickcontrols)
-	$(add_qt_dep qtquickcontrols2)
-	$(add_qt_dep qtvirtualkeyboard)
-	multimedia? ( $(add_qt_dep qtmultimedia 'gstreamer,qml') )
+	>=kde-frameworks/kirigami-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtquickcontrols-${QT_MINIMAL}:5
+	>=dev-qt/qtquickcontrols2-${QT_MINIMAL}:5
+	>=dev-qt/qtvirtualkeyboard-${QT_MINIMAL}:5
+	multimedia? ( >=dev-qt/qtmultimedia-${QT_MINIMAL}:5[gstreamer,qml] )
 "
 DEPEND="${COMMON_DEPEND}
-	$(add_qt_dep designer)
-	$(add_qt_dep qtconcurrent)
+	>=dev-qt/designer-${QT_MINIMAL}:5
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
 	x11-base/xorg-proto
 "
 PDEPEND="
-	$(add_plasma_dep kde-cli-tools)
+	>=kde-plasma/kde-cli-tools-${PVCUT}:5
 "
 
 RESTRICT+=" test"

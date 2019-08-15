@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_TEST="true"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Provides integration plugins for various KDE frameworks for Wayland"
@@ -14,11 +17,11 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kidletime)
-	$(add_frameworks_dep kwayland)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kidletime-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

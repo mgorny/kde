@@ -5,6 +5,9 @@ EAPI=7
 
 CMAKE_MIN_VERSION=3.14.3
 KDE_HANDBOOK="forceoptional"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Utility providing information about the computer hardware"
@@ -16,45 +19,45 @@ IUSE="gles2 ieee1394 +opengl +pci wayland"
 REQUIRED_USE="wayland? ( || ( gles2 opengl ) )"
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcmutils)
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kpackage)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep solid)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcmutils-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kpackage-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/solid-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	x11-libs/libX11
 	ieee1394? ( sys-libs/libraw1394 )
 	opengl? (
-		$(add_qt_dep qtgui 'gles2=')
+		>=dev-qt/qtgui-${QT_MINIMAL}:5[gles2=]
 		media-libs/mesa[gles2?]
 		!gles2? ( media-libs/glu )
 	)
 	pci? ( sys-apps/pciutils )
 	wayland? (
-		$(add_frameworks_dep kwayland)
+		>=kde-frameworks/kwayland-${FRAMEWORKS_MINIMAL}:5
 		media-libs/mesa[egl]
 	)
 "
 DEPEND="${COMMON_DEPEND}
-	$(add_frameworks_dep plasma)
+	>=kde-frameworks/plasma-${FRAMEWORKS_MINIMAL}:5
 "
 RDEPEND="${COMMON_DEPEND}
-	$(add_plasma_dep kde-cli-tools)
-	$(add_qt_dep qtquickcontrols2)
+	>=kde-plasma/kde-cli-tools-${PVCUT}:5
+	>=dev-qt/qtquickcontrols2-${QT_MINIMAL}:5
 "
 
 src_configure() {

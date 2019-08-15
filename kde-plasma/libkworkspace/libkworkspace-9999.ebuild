@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_TEST="true"
 KMNAME="plasma-workspace"
+FRAMEWORKS_MINIMAL=5.60.0
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Workspace library to interact with the Plasma session manager"
@@ -13,20 +16,20 @@ KEYWORDS=""
 IUSE=""
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep plasma)
-	$(add_plasma_dep kscreenlocker)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtx11extras)
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/plasma-${FRAMEWORKS_MINIMAL}:5
+	>=kde-plasma/kscreenlocker-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtx11extras-${QT_MINIMAL}:5
 	x11-libs/libICE
 	x11-libs/libSM
 	x11-libs/libX11
 	x11-libs/libXau
 "
 DEPEND="${COMMON_DEPEND}
-	$(add_plasma_dep kwin)
+	>=kde-plasma/kwin-${PVCUT}:5
 "
 RDEPEND="${COMMON_DEPEND}
 	!<kde-plasma/plasma-workspace-5.14.2:5
