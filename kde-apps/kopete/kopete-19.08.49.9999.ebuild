@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="forceoptional"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Multi-protocol IM client based on KDE Frameworks"
@@ -58,27 +61,27 @@ PROTOCOLS="gadu groupwise jingle meanwhile oscar testbed winpopup +xmpp zeroconf
 IUSE="${IUSE} ${PLUGINS} ${PROTOCOLS}"
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcmutils)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep khtml)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kdelibs4support)
-	$(add_frameworks_dep kemoticons)
-	$(add_frameworks_dep khtml)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep knotifyconfig)
-	$(add_frameworks_dep kparts)
-	$(add_frameworks_dep ktexteditor)
-	$(add_kdeapps_dep kcontacts)
-	$(add_kdeapps_dep kidentitymanagement)
-	$(add_kdeapps_dep libkleo)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtsql)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/kcmutils-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/khtml-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdelibs4support-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kemoticons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/khtml-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knotifyconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kparts-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ktexteditor-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/kcontacts-${PVCUT}:5
+	>=kde-apps/kidentitymanagement-${PVCUT}:5
+	>=kde-apps/libkleo-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtsql-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	app-crypt/gpgme[cxx,qt5]
 	dev-libs/libpcre
 	media-libs/phonon[qt5(+)]
@@ -108,8 +111,8 @@ COMMON_DEPEND="
 		sys-libs/zlib:=
 	)
 	zeroconf? (
-		$(add_frameworks_dep kdnssd)
-		$(add_kdeapps_dep kidentitymanagement)
+		>=kde-frameworks/kdnssd-${FRAMEWORKS_MINIMAL}:5
+		>=kde-apps/kidentitymanagement-${PVCUT}:5
 	)
 "
 RDEPEND="${COMMON_DEPEND}

@@ -4,6 +4,7 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-3)
 inherit kde5
 
 DESCRIPTION="Library for accessing MBox format mail storages"
@@ -11,5 +12,5 @@ LICENSE="GPL-2+"
 KEYWORDS=""
 IUSE=""
 
-DEPEND="$(add_kdeapps_dep kmime)"
+DEPEND=">=kde-apps/kmime-${PVCUT}:5"
 RDEPEND="${DEPEND}"

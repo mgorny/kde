@@ -4,6 +4,8 @@
 EAPI=7
 
 KDE_HANDBOOK="true"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
 inherit kde5
 
 DESCRIPTION="KDE Development Scripts"
@@ -13,8 +15,8 @@ IUSE=""
 # kdelibs4support - required for kdex.dtd
 # kdoctools - to use ECM instead of kdelibs4
 DEPEND="
-	$(add_frameworks_dep kdelibs4support)
-	$(add_frameworks_dep kdoctools)
+	>=kde-frameworks/kdelibs4support-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdoctools-${FRAMEWORKS_MINIMAL}:5
 "
 RDEPEND="
 	app-arch/advancecomp

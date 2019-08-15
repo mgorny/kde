@@ -5,6 +5,8 @@ EAPI=7
 
 KDE_TEST="true"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library for handling calendar data"
@@ -16,7 +18,7 @@ BDEPEND="
 	sys-devel/bison
 "
 DEPEND="
-	$(add_qt_dep qtgui)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	dev-libs/libical:=
 "
 RDEPEND="${DEPEND}"

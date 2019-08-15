@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_TEST="true"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Wrapper library for world map components as marble, openstreetmap and googlemap"
@@ -15,16 +18,16 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_kdeapps_dep marble 'kde' '' '5=')
-	$(add_qt_dep qtconcurrent)
-	$(add_qt_dep qtgui)
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/marble-${PVCUT}:5=[kde]
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	>=dev-qt/qtwebkit-5.212.0_pre20180120:5
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}"
 

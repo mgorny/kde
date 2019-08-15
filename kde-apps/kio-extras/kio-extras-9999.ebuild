@@ -6,6 +6,9 @@ EAPI=7
 KDE_HANDBOOK="forceoptional"
 KDE_TEST="optional"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="KIO plugins present a filesystem-like view of arbitrary data"
@@ -17,35 +20,35 @@ BDEPEND="
 	man? ( dev-util/gperf )
 "
 DEPEND="
-	$(add_frameworks_dep karchive 'bzip2,lzma')
-	$(add_frameworks_dep kbookmarks)
-	$(add_frameworks_dep kcodecs)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep kdnssd)
-	$(add_frameworks_dep kguiaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kparts)
-	$(add_frameworks_dep kpty)
-	$(add_frameworks_dep kservice)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep solid)
-	$(add_frameworks_dep syntax-highlighting)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
+	>=kde-frameworks/karchive-${FRAMEWORKS_MINIMAL}:5[bzip2,lzma]
+	>=kde-frameworks/kbookmarks-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcodecs-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdnssd-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kguiaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kparts-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kpty-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/solid-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/syntax-highlighting-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	activities? (
-		$(add_frameworks_dep kactivities)
-		$(add_qt_dep qtsql)
+		>=kde-frameworks/kactivities-${FRAMEWORKS_MINIMAL}:5
+		>=dev-qt/qtsql-${QT_MINIMAL}:5
 	)
-	man? ( $(add_frameworks_dep khtml) )
+	man? ( >=kde-frameworks/khtml-${FRAMEWORKS_MINIMAL}:5 )
 	mtp? ( >=media-libs/libmtp-1.1.16:= )
 	openexr? ( media-libs/openexr:= )
 	phonon? ( media-libs/phonon[qt5(+)] )
@@ -54,7 +57,7 @@ DEPEND="
 	taglib? ( >=media-libs/taglib-1.11.1 )
 "
 RDEPEND="${DEPEND}
-	$(add_frameworks_dep kded)
+	>=kde-frameworks/kded-${FRAMEWORKS_MINIMAL}:5
 "
 
 # requires running kde environment

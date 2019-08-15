@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_TEST="true"
 KMNAME="ktnef"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library for handling TNEF data"
@@ -13,11 +16,11 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep ki18n)
-	$(add_kdeapps_dep kcalcore)
-	$(add_kdeapps_dep kcalutils)
-	$(add_kdeapps_dep kcontacts)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/kcalcore-${PVCUT}:5
+	>=kde-apps/kcalutils-${PVCUT}:5
+	>=kde-apps/kcontacts-${PVCUT}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 "
 RDEPEND="${DEPEND}
 	!kde-apps/kdepim-l10n

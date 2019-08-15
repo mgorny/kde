@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_TEST="forceoptional"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library for interacting with IMAP servers"
@@ -12,17 +15,17 @@ KEYWORDS=""
 IUSE=""
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcodecs)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_kdeapps_dep kmime)
-	$(add_qt_dep qtgui)
+	>=kde-frameworks/kcodecs-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/kmime-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	dev-libs/cyrus-sasl
 "
 # TODO: Convince upstream not to install stuff with tests
 DEPEND="${COMMON_DEPEND}
-	test? ( $(add_qt_dep qtnetwork) )
+	test? ( >=dev-qt/qtnetwork-${QT_MINIMAL}:5 )
 "
 RDEPEND="${COMMON_DEPEND}
 	!kde-apps/kdepim-l10n

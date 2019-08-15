@@ -4,6 +4,9 @@
 EAPI=7
 
 KMNAME="kdegraphics-thumbnailers"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Thumbnail generators for PDF/PS and RAW files"
@@ -12,12 +15,12 @@ KEYWORDS=""
 IUSE="raw"
 
 DEPEND="
-	$(add_frameworks_dep karchive)
-	$(add_frameworks_dep kio)
-	$(add_qt_dep qtgui)
+	>=kde-frameworks/karchive-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	raw? (
-		$(add_kdeapps_dep libkdcraw)
-		$(add_kdeapps_dep libkexiv2)
+		>=kde-apps/libkdcraw-${PVCUT}:5
+		>=kde-apps/libkexiv2-${PVCUT}:5
 	)
 "
 RDEPEND="${DEPEND}"

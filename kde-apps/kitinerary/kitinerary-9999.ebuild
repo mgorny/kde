@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Data Model and Extraction System for Travel Reservation information"
@@ -15,14 +18,14 @@ KEYWORDS=""
 IUSE="+barcode pdf"
 
 DEPEND="
-	$(add_frameworks_dep karchive)
-	$(add_frameworks_dep ki18n)
-	$(add_kdeapps_dep kcalcore)
-	$(add_kdeapps_dep kcontacts)
-	$(add_kdeapps_dep kmime)
-	$(add_kdeapps_dep kpkpass)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui)
+	>=kde-frameworks/karchive-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/kcalcore-${PVCUT}:5
+	>=kde-apps/kcontacts-${PVCUT}:5
+	>=kde-apps/kmime-${PVCUT}:5
+	>=kde-apps/kpkpass-${PVCUT}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	sys-libs/zlib
 	barcode? ( media-libs/zxing-cpp )
 	pdf? ( app-text/poppler:=[qt5] )

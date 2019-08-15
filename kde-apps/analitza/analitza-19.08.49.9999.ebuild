@@ -5,6 +5,8 @@ EAPI=7
 
 KDE_TEST="forceoptional-recursive"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="KDE library for mathematical features"
@@ -12,15 +14,15 @@ KEYWORDS=""
 IUSE="eigen nls"
 
 BDEPEND="
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui '-gles2')
-	$(add_qt_dep qtprintsupport)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5[-gles2]
+	>=dev-qt/qtprintsupport-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
 	eigen? ( dev-cpp/eigen:3 )
 "
 RDEPEND="${DEPEND}"

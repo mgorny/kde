@@ -3,6 +3,8 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-3)
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Digital camera raw image library wrapper"
@@ -11,7 +13,7 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_qt_dep qtgui)
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 	>=media-libs/libraw-0.16:=
 "
 RDEPEND="${DEPEND}"

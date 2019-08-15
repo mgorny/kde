@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_HANDBOOK="forceoptional"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Game based on anagrams of words"
@@ -12,27 +15,27 @@ KEYWORDS=""
 IUSE="speech"
 
 DEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kcrash)
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep knewstuff)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep sonnet)
-	$(add_kdeapps_dep libkeduvocdocument)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/knewstuff-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/sonnet-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/libkeduvocdocument-${PVCUT}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	media-libs/phonon[qt5(+)]
-	speech? ( $(add_qt_dep qtspeech) )
+	speech? ( >=dev-qt/qtspeech-${QT_MINIMAL}:5 )
 "
 RDEPEND="${DEPEND}
-	$(add_kdeapps_dep kdeedu-data)
-	$(add_qt_dep qtmultimedia 'qml')
-	$(add_qt_dep qtquickcontrols)
+	>=kde-apps/kdeedu-data-${PVCUT}:5
+	>=dev-qt/qtmultimedia-${QT_MINIMAL}:5[qml]
+	>=dev-qt/qtquickcontrols-${QT_MINIMAL}:5
 "
 
 src_configure() {

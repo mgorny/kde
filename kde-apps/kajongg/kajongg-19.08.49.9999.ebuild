@@ -6,6 +6,9 @@ EAPI=7
 KDE_AUTODEPS="false"
 KDE_HANDBOOK="forceoptional"
 PYTHON_COMPAT=( python3_{5,6,7} )
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit python-single-r1 kde5
 
 DESCRIPTION="Classical Mah Jongg for four players"
@@ -16,20 +19,20 @@ IUSE=""
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 DEPEND="${PYTHON_DEPS}
-	$(add_frameworks_dep extra-cmake-modules)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep ki18n)
-	$(add_kdeapps_dep libkdegames)
-	$(add_qt_dep qtcore)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/extra-cmake-modules-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/libkdegames-${PVCUT}:5
+	>=dev-qt/qtcore-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	dev-db/sqlite:3
 	dev-python/PyQt5[gui,svg,widgets,${PYTHON_USEDEP}]
 	>=dev-python/twisted-16.6.0[${PYTHON_USEDEP}]
 "
 RDEPEND="${DEPEND}
-	$(add_kdeapps_dep libkmahjongg)
+	>=kde-apps/libkmahjongg-${PVCUT}:5
 "
 
 pkg_setup() {

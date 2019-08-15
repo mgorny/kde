@@ -5,6 +5,9 @@ EAPI=7
 
 KDE_AUTODEPS="false"
 KDE_DEBUG="false"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Shared icons, artwork and data files for educational applications"
@@ -12,8 +15,8 @@ KEYWORDS=""
 IUSE=""
 
 BDEPEND="
-	$(add_frameworks_dep extra-cmake-modules)
-	$(add_qt_dep qtcore)
+	>=kde-frameworks/extra-cmake-modules-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtcore-${QT_MINIMAL}:5
 "
 RDEPEND="
 	!kde-apps/kde-l10n

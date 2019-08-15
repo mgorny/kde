@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Job-based library to send email through an SMTP server"
@@ -12,10 +15,10 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kio)
-	$(add_qt_dep qtnetwork)
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
 	dev-libs/cyrus-sasl
 "
 RDEPEND="${DEPEND}"

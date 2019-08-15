@@ -7,6 +7,9 @@ KDE_HANDBOOK="optional" # see src/apps/marble-kde/CMakeLists.txt
 KDE_SUBSLOT="true"
 KDE_TEST="forceoptional"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Virtual Globe and World Atlas to learn more about Earth"
@@ -18,39 +21,39 @@ IUSE="aprs +dbus designer gps +kde nls phonon +geolocation shapefile +webengine"
 # FIXME (new package): libwlocate, WLAN-based geolocation
 BDEPEND="
 	aprs? ( dev-lang/perl )
-	nls? ( $(add_qt_dep linguist-tools) )
+	nls? ( >=dev-qt/linguist-tools-${QT_MINIMAL}:5 )
 "
 DEPEND="
-	$(add_qt_dep qtconcurrent)
-	$(add_qt_dep qtdeclarative)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtprintsupport)
-	$(add_qt_dep qtsql)
-	$(add_qt_dep qtsvg)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
-	aprs? ( $(add_qt_dep qtserialport) )
-	dbus? ( $(add_qt_dep qtdbus) )
-	designer? ( $(add_qt_dep designer) )
-	geolocation? ( $(add_qt_dep qtpositioning) )
+	>=dev-qt/qtconcurrent-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtprintsupport-${QT_MINIMAL}:5
+	>=dev-qt/qtsql-${QT_MINIMAL}:5
+	>=dev-qt/qtsvg-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
+	aprs? ( >=dev-qt/qtserialport-${QT_MINIMAL}:5 )
+	dbus? ( >=dev-qt/qtdbus-${QT_MINIMAL}:5 )
+	designer? ( >=dev-qt/designer-${QT_MINIMAL}:5 )
+	geolocation? ( >=dev-qt/qtpositioning-${QT_MINIMAL}:5 )
 	gps? ( sci-geosciences/gpsd )
 	kde? (
-		$(add_frameworks_dep kconfig)
-		$(add_frameworks_dep kconfigwidgets)
-		$(add_frameworks_dep kcoreaddons)
-		$(add_frameworks_dep kcrash)
-		$(add_frameworks_dep ki18n)
-		$(add_frameworks_dep kio)
-		$(add_frameworks_dep knewstuff)
-		$(add_frameworks_dep kparts)
-		$(add_frameworks_dep krunner)
-		$(add_frameworks_dep kservice)
-		$(add_frameworks_dep kwallet)
+		>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kcrash-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/knewstuff-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kparts-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/krunner-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
+		>=kde-frameworks/kwallet-${FRAMEWORKS_MINIMAL}:5
 	)
 	phonon? ( media-libs/phonon[qt5(+)] )
 	shapefile? ( sci-libs/shapelib:= )
-	webengine? ( $(add_qt_dep qtwebengine 'widgets') )
+	webengine? ( >=dev-qt/qtwebengine-${QT_MINIMAL}:5[widgets] )
 "
 RDEPEND="${DEPEND}"
 

@@ -3,6 +3,9 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="KDE Telepathy krunner plugin"
@@ -13,15 +16,15 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep krunner)
-	$(add_kdeapps_dep ktp-common-internals)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtwidgets)
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/krunner-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/ktp-common-internals-${PVCUT}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
 	net-libs/telepathy-qt[qt5(+)]
 "
 DEPEND="${RDEPEND}
-	$(add_frameworks_dep kservice)
+	>=kde-frameworks/kservice-${FRAMEWORKS_MINIMAL}:5
 "

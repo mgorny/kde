@@ -4,6 +4,9 @@
 EAPI=7
 
 KDE_TEST="true"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Client library to access and handling of KAlarm calendar data"
@@ -12,17 +15,17 @@ KEYWORDS=""
 IUSE=""
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kholidays)
-	$(add_frameworks_dep ki18n)
-	$(add_kdeapps_dep akonadi)
-	$(add_kdeapps_dep kcalcore)
-	$(add_kdeapps_dep kcalutils)
-	$(add_kdeapps_dep kidentitymanagement)
-	$(add_qt_dep qtgui)
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kholidays-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/akonadi-${PVCUT}:5
+	>=kde-apps/kcalcore-${PVCUT}:5
+	>=kde-apps/kcalutils-${PVCUT}:5
+	>=kde-apps/kidentitymanagement-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
 "
 DEPEND="${COMMON_DEPEND}
-	test? ( $(add_qt_dep qtdbus) )
+	test? ( >=dev-qt/qtdbus-${QT_MINIMAL}:5 )
 "
 RDEPEND="${COMMON_DEPEND}
 	!kde-apps/kdepim-l10n

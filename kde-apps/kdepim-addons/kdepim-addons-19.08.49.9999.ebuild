@@ -6,6 +6,9 @@ EAPI=7
 KDE_EXAMPLES="true"
 KDE_TEST="forceoptional-recursive"
 VIRTUALX_REQUIRED="test"
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Plugins for KDE Personal Information Management Suite"
@@ -16,47 +19,47 @@ KEYWORDS=""
 IUSE="importwizard markdown"
 
 COMMON_DEPEND="
-	$(add_frameworks_dep kcompletion)
-	$(add_frameworks_dep kconfig)
-	$(add_frameworks_dep kconfigwidgets)
-	$(add_frameworks_dep kcoreaddons)
-	$(add_frameworks_dep kdbusaddons)
-	$(add_frameworks_dep khtml)
-	$(add_frameworks_dep ki18n)
-	$(add_frameworks_dep kiconthemes)
-	$(add_frameworks_dep kio)
-	$(add_frameworks_dep kparts)
-	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kxmlgui)
-	$(add_frameworks_dep prison)
-	$(add_frameworks_dep syntax-highlighting)
-	$(add_kdeapps_dep akonadi)
-	$(add_kdeapps_dep akonadi-contacts)
-	$(add_kdeapps_dep akonadi-notes)
-	$(add_kdeapps_dep calendarsupport)
-	$(add_kdeapps_dep eventviews)
-	$(add_kdeapps_dep grantleetheme)
-	$(add_kdeapps_dep incidenceeditor)
-	$(add_kdeapps_dep kcontacts)
-	$(add_kdeapps_dep kdepim-apps-libs)
-	$(add_kdeapps_dep kidentitymanagement)
-	$(add_kdeapps_dep kimap)
-	$(add_kdeapps_dep kitinerary)
-	$(add_kdeapps_dep kmailtransport)
-	$(add_kdeapps_dep kmime)
-	$(add_kdeapps_dep kpkpass)
-	$(add_kdeapps_dep libkdepim)
-	$(add_kdeapps_dep libkleo)
-	$(add_kdeapps_dep libksieve)
-	$(add_kdeapps_dep libktnef)
-	$(add_kdeapps_dep mailcommon)
-	$(add_kdeapps_dep messagelib)
-	$(add_kdeapps_dep pimcommon)
-	$(add_qt_dep qtgui)
-	$(add_qt_dep qtnetwork)
-	$(add_qt_dep qtwidgets)
-	$(add_qt_dep qtxml)
-	importwizard? ( $(add_kdeapps_dep akonadi-import-wizard) )
+	>=kde-frameworks/kcompletion-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfig-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kconfigwidgets-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kcoreaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kdbusaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/khtml-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kiconthemes-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kparts-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwidgetsaddons-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kxmlgui-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/prison-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/syntax-highlighting-${FRAMEWORKS_MINIMAL}:5
+	>=kde-apps/akonadi-${PVCUT}:5
+	>=kde-apps/akonadi-contacts-${PVCUT}:5
+	>=kde-apps/akonadi-notes-${PVCUT}:5
+	>=kde-apps/calendarsupport-${PVCUT}:5
+	>=kde-apps/eventviews-${PVCUT}:5
+	>=kde-apps/grantleetheme-${PVCUT}:5
+	>=kde-apps/incidenceeditor-${PVCUT}:5
+	>=kde-apps/kcontacts-${PVCUT}:5
+	>=kde-apps/kdepim-apps-libs-${PVCUT}:5
+	>=kde-apps/kidentitymanagement-${PVCUT}:5
+	>=kde-apps/kimap-${PVCUT}:5
+	>=kde-apps/kitinerary-${PVCUT}:5
+	>=kde-apps/kmailtransport-${PVCUT}:5
+	>=kde-apps/kmime-${PVCUT}:5
+	>=kde-apps/kpkpass-${PVCUT}:5
+	>=kde-apps/libkdepim-${PVCUT}:5
+	>=kde-apps/libkleo-${PVCUT}:5
+	>=kde-apps/libksieve-${PVCUT}:5
+	>=kde-apps/libktnef-${PVCUT}:5
+	>=kde-apps/mailcommon-${PVCUT}:5
+	>=kde-apps/messagelib-${PVCUT}:5
+	>=kde-apps/pimcommon-${PVCUT}:5
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	>=dev-qt/qtnetwork-${QT_MINIMAL}:5
+	>=dev-qt/qtwidgets-${QT_MINIMAL}:5
+	>=dev-qt/qtxml-${QT_MINIMAL}:5
+	importwizard? ( >=kde-apps/akonadi-import-wizard-${PVCUT}:5 )
 	markdown? ( app-text/discount )
 "
 DEPEND="${COMMON_DEPEND}

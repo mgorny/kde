@@ -3,6 +3,9 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="Library to support mobipocket ebooks"
@@ -10,8 +13,8 @@ KEYWORDS=""
 IUSE="+thumbnail"
 
 DEPEND="
-	$(add_qt_dep qtgui)
-	thumbnail? ( $(add_frameworks_dep kio) )
+	>=dev-qt/qtgui-${QT_MINIMAL}:5
+	thumbnail? ( >=kde-frameworks/kio-${FRAMEWORKS_MINIMAL}:5 )
 "
 RDEPEND="${DEPEND}"
 

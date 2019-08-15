@@ -3,6 +3,9 @@
 
 EAPI=7
 
+PVCUT=$(ver_cut 1-3)
+FRAMEWORKS_MINIMAL=5.60.0
+QT_MINIMAL=5.12.3
 inherit kde5
 
 DESCRIPTION="KDE Telepathy contact, presence and chat Plasma applets"
@@ -13,12 +16,12 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	$(add_frameworks_dep kdeclarative)
-	$(add_frameworks_dep kwindowsystem)
-	$(add_frameworks_dep plasma)
-	$(add_qt_dep qtdbus)
-	$(add_qt_dep qtdeclarative)
+	>=kde-frameworks/kdeclarative-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/kwindowsystem-${FRAMEWORKS_MINIMAL}:5
+	>=kde-frameworks/plasma-${FRAMEWORKS_MINIMAL}:5
+	>=dev-qt/qtdbus-${QT_MINIMAL}:5
+	>=dev-qt/qtdeclarative-${QT_MINIMAL}:5
 "
 DEPEND="${RDEPEND}
-	$(add_frameworks_dep ki18n)
+	>=kde-frameworks/ki18n-${FRAMEWORKS_MINIMAL}:5
 "
