@@ -19,7 +19,6 @@ COMMON_DEPEND="
 	$(add_frameworks_dep ki18n)
 	$(add_frameworks_dep kitemmodels)
 	$(add_frameworks_dep kwidgetsaddons)
-	$(add_frameworks_dep kwindowsystem)
 	$(add_qt_dep qtgui)
 	$(add_qt_dep qtwidgets)
 	>=app-crypt/gpgme-1.11.1[cxx,qt5]
