@@ -163,6 +163,12 @@ src_install() {
 pkg_postinst () {
 	kde5_pkg_postinst
 
-	elog "TODO: /etc/plasma/{startup,shutdown} locations for gpg-agent/ssh-agent"
-	elog "do not currently work, see bug #688366."
+	elog "To enable gpg-agent and/or ssh-agent in Plasma sessions, do the following:"
+	elog " * Edit /etc/plasma/startup/10-agent-startup.sh and uncomment"
+	elog "   the lines enabling ssh-agent."
+	elog " * In /etc/plasma/shutdown/10-agent-shutdown.sh uncomment the"
+	elog "   respective lines properly kill the agent when the session ends."
+	elog " * Symlink both files to your home directory:"
+	elog "  - ln -s /etc/plasma/startup/10-agent-startup.sh ~/.config/autostart/"
+	elog "  - ln -s /etc/plasma/startup/10-agent-startup.sh ~/.config/plasma-workspace/shutdown/"
 }
