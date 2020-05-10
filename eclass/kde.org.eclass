@@ -34,6 +34,48 @@ fi
 
 EXPORT_FUNCTIONS pkg_nofetch src_unpack
 
+declare -A KDE_ORG_CATEGORIES=(
+	[app-accessibility]=accessibility
+	[app-admin]=system
+	[app-backup]=system
+	[app-cdr]=utilities
+	[app-editors]=office
+	[app-office]=office
+	[app-text]=office
+	[dev-libs]=libraries
+	[dev-util/kdevelop]=kdevelop
+	[dev-util]=sdk
+	[games-kids]=education
+	[kde-frameworks]=frameworks
+	[kde-plasma]=plasma
+	[mail-client]=pim
+	[media-gfx]=graphics
+	[media-libs]=libraries
+	[media-sound]=multimedia
+	[media-video]=multimedia
+	[net-im]=network
+	[net-irc]=network
+	[net-libs]=libraries
+	[net-misc]=network
+	[net-p2p]=network
+	[sci-astronomy]=education
+	[sci-calculators]=utilities
+	[sci-mathematics]=education
+	[sci-visualization]=education
+	[sys-block]=system
+	[sys-libs]=system
+	[www-client]=network
+	[x11-libs]=libraries
+)
+readonly KDE_ORG_CATEGORIES
+
+# @ECLASS-VARIABLE: KDE_ORG_CATEGORY
+# @DEFAULT_UNSET
+# @DESCRIPTION:
+# If unset, default value is mapped from ${CATEGORY} to corresponding upstream
+# category on invent.kde.org, with "kde" as fallback value.
+: ${KDE_ORG_CATEGORY:=${KDE_ORG_CATEGORIES[${CATEGORY}]:-kde}}
+
 # @ECLASS-VARIABLE: KDE_ORG_NAME
 # @DESCRIPTION:
 # If unset, default value is set to ${PN}.
