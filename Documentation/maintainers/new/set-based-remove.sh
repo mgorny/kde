@@ -1,6 +1,10 @@
 #!/bin/sh
 
-# Requires app-portage/repoman
+# Requires:
+# app-portage/repoman
+# Optional:
+# dev-vcs/git
+# app-portage/mgorny-dev-scripts
 
 . $(dirname "$0")/lib.sh
 
@@ -46,3 +50,16 @@ for package in ${packages} ; do
 	repoman manifest
 	popd > /dev/null
 done
+
+if [[ -d "${TARGET_REPO}/.git" ]] && hash git 2>/dev/null && hash pkgcommit 2>/dev/null; then
+	for cp in ${packages} ; do
+		pushd "${TARGET_REPO}/${cp}" > /dev/null
+
+		pn=$(basename $(pwd))
+
+		git add .
+		pkgcommit -sS . -m "drop ${VERSION}*"
+
+		popd > /dev/null
+	done
+fi
