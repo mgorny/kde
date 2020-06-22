@@ -4,6 +4,9 @@
 # app-portage/portage-utils
 # app-portage/gentoolkit-dev
 # app-portage/repoman
+# Optional:
+# dev-vcs/git
+# app-portage/mgorny-dev-scripts
 
 : ${PORTDIR:="$(pwd)"}
 
@@ -79,3 +82,17 @@ for cp in ${packages} ; do
 
 	popd > /dev/null
 done
+
+if [[ -d "${PORTDIR}/.git" ]] && hash git 2>/dev/null && hash pkgcommit 2>/dev/null; then
+	for cp in ${packages} ; do
+		pushd "${PORTDIR}/${cp}" > /dev/null
+
+		pn=$(basename $(pwd))
+		destination=${pn}-${DESTINATIONVERSION}.ebuild
+
+		git add .
+		pkgcommit -sS . -m "${DESTINATIONVERSION} version bump"
+
+		popd > /dev/null
+	done
+fi
