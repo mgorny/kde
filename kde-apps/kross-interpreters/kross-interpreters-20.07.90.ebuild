@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 )
+PYTHON_COMPAT=( python3_{7,8,9} )
 USE_RUBY="ruby25 ruby26 ruby27"
 KFMIN=5.72.0
 QTMIN=5.14.2
@@ -26,6 +26,8 @@ DEPEND="
 	ruby? ( ${RUBY_DEPS} )
 "
 RDEPEND="${DEPEND}"
+
+PATCHES=( "${FILESDIR}/${PN}-20.11.80-py3.patch" )
 
 pkg_setup() {
 	use python && python-single-r1_pkg_setup
