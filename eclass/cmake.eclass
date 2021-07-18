@@ -65,12 +65,18 @@ _CMAKE_ECLASS=1
 # The default is set to "ninja".
 : ${CMAKE_MAKEFILE_GENERATOR:=ninja}
 
+_CMAKE_REMOVE_MODULES_LIST=( FindBLAS FindLAPACK )
+readonly _CMAKE_REMOVE_MODULES_LIST
+
 # @ECLASS-VARIABLE: CMAKE_REMOVE_MODULES_LIST
 # @DESCRIPTION:
 # Space-separated list of CMake modules that will be removed in $S (in EAPI-8:
 # $CMAKE_USE_DIR) during src_prepare, in order to force packages to use the
 # system version.  Set to empty to disable removing modules entirely.
-: ${CMAKE_REMOVE_MODULES_LIST:=FindBLAS FindLAPACK}
+: ${CMAKE_REMOVE_MODULES_LIST:=( "${_CMAKE_REMOVE_MODULES_LIST[@]}" )}
+
+[[ ${CMAKE_REMOVE_MODULES_LIST@a} == *a* ]] ||
+	die "CMAKE_REMOVE_MODULES_LIST must be an array"
 
 # @ECLASS-VARIABLE: CMAKE_USE_DIR
 # @DESCRIPTION:
