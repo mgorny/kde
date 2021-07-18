@@ -1,7 +1,7 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 KDE_ORG_COMMIT=be78a85b627e90d854da0de1049e8f191e67f228
 inherit cmake kde.org
